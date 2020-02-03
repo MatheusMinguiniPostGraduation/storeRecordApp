@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Ficha - Detalhes
+        </ion-title>
+        <ion-buttons end>
+            <menu-component></menu-component>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card>
+        <ion-card-content>
+            <ion-card-header>
+                Silvia Simões Minguini
+
+                <ion-card-title>
+                    <ion-badge color="danger" item-end>Valor na ficha: R$ 2.750,75</ion-badge>
+                </ion-card-title>
+
+            </ion-card-header>
+            <ion-list>
+                <button ion-item>
+                <ion-icon name="cart" item-start></ion-icon>
+                Histórico de vendas
+                </button>
+            
+                <button ion-item>
+                <ion-icon name="card" item-start></ion-icon>
+                Histórico de pagamentos
+                </button>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+
+        <ion-card-content>
+            <ion-card-header>
+                <ion-card-title>
+                    Atualizar dados
+                </ion-card-title>
+            </ion-card-header>
+
+            <ion-list>
+                <ion-item>
+                    <ion-input type="text" value="Silvia"></ion-input>
+                </ion-item>
+                    
+                <ion-item>
+                    <ion-input type="text" value="Simões Minguini"></ion-input>
+                </ion-item>
+        
+                <ion-item>
+                    <ion-textarea placeholder="Informações adicionais" [(ngModel)]="note" value="CPF: 455.099.398-77"></ion-textarea>
+                </ion-item>
+        
+                <ion-item>
+                    <button ion-button large color="default-blue" full icon-end (click)="save()">
+                        Atualizar
+                        <ion-icon name="checkmark"></ion-icon>
+                    </button>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+
+    </ion-card>
+
+</ion-content>

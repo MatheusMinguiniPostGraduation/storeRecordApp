@@ -9,12 +9,19 @@ import { HomePage } from '../pages/home/home';
 
 //Declaring app things here
 import { RecordSearch } from '../pages/record/record-search';
+import { RecordForm } from '../pages/record/record-form';
+import { RecordDetail } from '../pages/record/record-detail';
+
+import { MenuComponent } from '../pages/menu/menu.component';
 
 @NgModule({
   declarations: [
     MyApp,
+    MenuComponent,
     HomePage,
-    RecordSearch
+    RecordSearch,
+    RecordForm,
+    RecordDetail
   ],
   imports: [
     BrowserModule,
@@ -23,8 +30,11 @@ import { RecordSearch } from '../pages/record/record-search';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    MenuComponent,
     HomePage,
-    RecordSearch
+    RecordSearch,
+    RecordForm,
+    RecordDetail
   ],
   providers: [
     StatusBar,

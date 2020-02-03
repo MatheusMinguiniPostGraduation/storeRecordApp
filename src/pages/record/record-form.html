@@ -1,0 +1,37 @@
+<ion-header>
+        <ion-navbar>
+            <ion-title>
+                Dados da ficha
+            </ion-title>
+            <ion-buttons end>
+                <menu-component></menu-component>
+            </ion-buttons>
+        </ion-navbar>
+    </ion-header>
+    
+<ion-content padding>
+    <ion-list>
+
+        <ion-item>
+            <ion-label fixed>Nome</ion-label>
+            <ion-input type="text" value=""></ion-input>
+        </ion-item>
+        
+        <ion-item>
+            <ion-label fixed>Sobrenome</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-textarea placeholder="Informações adicionais" [(ngModel)]="note" ></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+            <button ion-button large color="default-blue" full icon-end (click)="save()">
+                Cadastrar 
+                <ion-icon name="checkmark"></ion-icon>
+            </button>
+        </ion-item>
+        
+    </ion-list>
+</ion-content>
