@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+          Fichas
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+
+        <ion-item>
+            <ion-label fixed>Nome</ion-label>
+            <ion-input type="text" value=""></ion-input>
+        </ion-item>
+        
+        <ion-item>
+            <ion-label fixed>Sobrenome</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <button ion-button large color="default-blue" full icon-end>
+                Procurar Ficha
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-item>
+        
+    </ion-list>
+
+    <ion-grid>
+        <ion-row>
+            <ion-card>
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col>
+                            Silvia Simões Minguini
+                        </ion-col>
+                        <ion-col>
+                            <ion-badge color="danger" item-end>R$ 5.000</ion-badge>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-row>
+
+        <ion-row>
+                <ion-card>
+                    <ion-card-content>
+                        <ion-row>
+                            <ion-col>
+                                Silvia Marina
+                            </ion-col>
+                            <ion-col>
+                                <ion-badge color="danger" item-end>R$ 2.750,75</ion-badge>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-row>
+    </ion-grid>
+
+    <ion-fab right bottom>
+        <button ion-fab color="default-blue" (click)="openRecordFormPage()">
+            <ion-icon ios="ios-add" md="md-add"></ion-icon>
+        </button>
+    </ion-fab>
+
+</ion-content>

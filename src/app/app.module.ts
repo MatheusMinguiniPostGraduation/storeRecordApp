@@ -7,10 +7,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+//Declaring app things here
+import { RecordSearch } from '../pages/record/record-search';
+
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    RecordSearch
   ],
   imports: [
     BrowserModule,
@@ -19,7 +23,8 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    RecordSearch
   ],
   providers: [
     StatusBar,
