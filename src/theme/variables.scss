@@ -43,6 +43,27 @@ $colors: (
 );
 
 
+.toast-default { 
+  .toast-message { 
+    border-radius: 0.65rem !important; 
+    background: color($colors, primary) 
+  } 
+}
+
+.toast-success { 
+  .toast-message { 
+    border-radius: 0.65rem !important; 
+    background: color($colors, secondary) 
+  } 
+}
+
+.toast-error { 
+  .toast-message { 
+    border-radius: 0.65rem !important; 
+    background: color($colors, danger) 
+  } 
+}
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

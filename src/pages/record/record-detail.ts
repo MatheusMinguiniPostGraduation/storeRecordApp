@@ -6,7 +6,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'record-detail.html'
 })
 
-export class RecordDetail {
+export class RecordDetailComponent {
   constructor(public navCtrl: NavController) {}
 
 }

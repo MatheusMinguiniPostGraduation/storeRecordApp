@@ -3,38 +3,31 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 //Declaring app things here
-import { RecordSearch } from '../pages/record/record-search';
-import { RecordForm } from '../pages/record/record-form';
-import { RecordDetail } from '../pages/record/record-detail';
 
-import { MenuComponent } from '../pages/menu/menu.component';
+//Modules
+import { RecordModule } from '../pages/record/record.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    MenuComponent,
-    HomePage,
-    RecordSearch,
-    RecordForm,
-    RecordDetail
+    HomePage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    RecordModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    MenuComponent,
-    HomePage,
-    RecordSearch,
-    RecordForm,
-    RecordDetail
+    HomePage
   ],
   providers: [
     StatusBar,

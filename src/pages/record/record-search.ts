@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { RecordForm } from '../record/record-form';
+import { RecordFormComponent } from '../record/record-form';
 
 @Component({
   templateUrl: 'record-search.html'
 })
 
-export class RecordSearch {
+export class RecordSearchComponent {
 
   constructor(public navCtrl: NavController) {
 
   }
 
   openRecordFormPage(){
-    this.navCtrl.push(RecordForm);
+    this.navCtrl.push(RecordFormComponent);
   }
 
 }

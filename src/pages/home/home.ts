@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { RecordSearch } from '../record/record-search';
+import { RecordSearchComponent } from '../record/record-search';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class HomePage {
   }
 
   openSearchRecordScreen(){
-    this.navCtrl.push(RecordSearch);
+    this.navCtrl.push(RecordSearchComponent);
   }
 
 }
