@@ -24,14 +24,31 @@
             <ion-list>
                 <button ion-item>
                 <ion-icon name="cart" item-start></ion-icon>
-                Histórico de vendas
+                Vendas
                 </button>
             
                 <button ion-item>
                 <ion-icon name="card" item-start></ion-icon>
-                Histórico de pagamentos
+                Pagamentos
                 </button>
             </ion-list>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <button ion-button small color="default-blue" round (click)="openSaleScreen()">
+                            Vender 
+                        </button>
+                    </ion-col>
+
+                    <ion-col col-6>
+                        <button ion-button small color="default-blue" round (click)="openReceiveScreen()">
+                            Receber
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
         </ion-card-content>
     </ion-card>
 

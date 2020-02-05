@@ -4,7 +4,6 @@ import { RecordSearchComponent } from '../record/record-search';
 
 
 @Component({
-  selector: 'page-home',
   templateUrl: 'home.html'
 })
 
