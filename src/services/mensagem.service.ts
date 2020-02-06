@@ -1,12 +1,8 @@
 import { ToastController } from 'ionic-angular';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 
 
-@NgModule({
-    imports: [
-        ToastController
-    ]
-})
+@Injectable()
 export class MessagesUtils {
     private _successText : string;
     private _errorText : string;

@@ -1,5 +1,7 @@
+import { Injectable } from "@angular/core";
 
-export class RESTConfiguration {
+@Injectable()
+export class ServiceAPI {
   public _API_DNS : string;
 
   constructor(){

@@ -7,11 +7,10 @@ import { HttpClient } from '@angular/common/http';
 import { RecordDetailComponent } from '../record/record-detail';
 
 import { RecordVO } from '../../vo/RecordVO';
-import { RESTConfiguration } from '../../services/config.services';
 import { MessagesUtils } from '../../services/mensagem.service';
 
 @Component({
-  providers: [ RESTConfiguration, MessagesUtils ],
+  providers: [ MessagesUtils ],
   selector: 'record-form',
   templateUrl: 'record-form.html'
 })
@@ -23,7 +22,6 @@ export class RecordFormComponent {
   constructor(public navCtrl: NavController, 
               public toastCtrl: ToastController, 
               public http: HttpClient,
-              public configuration : RESTConfiguration,
               public message_service : MessagesUtils) {}
 
 
