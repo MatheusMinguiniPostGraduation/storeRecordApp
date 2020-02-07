@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { RecordSearchComponent } from '../record/record-search';
-
 
 @Component({
   templateUrl: 'home.html'
@@ -9,8 +8,10 @@ import { RecordSearchComponent } from '../record/record-search';
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  public userName : String;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.userName = JSON.parse(localStorage.getItem('userName'));
   }
 
   openSearchRecordScreen(){

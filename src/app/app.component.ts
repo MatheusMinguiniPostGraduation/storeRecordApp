@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
   rootPage:any = LoginComponent;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

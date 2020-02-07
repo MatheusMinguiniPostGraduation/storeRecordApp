@@ -7,8 +7,8 @@ import { RecordFormComponent } from './record-form';
 import { RecordSearchComponent } from './record-search';
 import { IonicModule } from 'ionic-angular';
 import { MenuComponent } from '../menu/menu.component';
-import { ServiceAPI } from '../../services/api.service';
 import { MessagesUtils } from '../../services/mensagem.service';
+import { HomeService } from '../../services/home.service';
 
 @NgModule({
     imports: [
@@ -24,11 +24,9 @@ import { MessagesUtils } from '../../services/mensagem.service';
         MenuComponent
     ],
     exports : [
-       
         RecordDetailComponent,
         RecordFormComponent, 
         RecordSearchComponent
-
     ],
     entryComponents: [
         MenuComponent,
@@ -37,8 +35,8 @@ import { MessagesUtils } from '../../services/mensagem.service';
         RecordSearchComponent
     ],
     providers : [
-        ServiceAPI,
-        MessagesUtils
+        MessagesUtils,
+        HomeService
     ]
 })
 export class RecordModule{

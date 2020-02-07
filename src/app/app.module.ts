@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 
@@ -14,6 +14,11 @@ import { MyApp } from './app.component';
 import { RecordModule } from './pages/record/record.module';
 import { LoginModule } from './pages/login/login.module';
 import { LoginComponent } from './pages/login/login.component';
+
+//Interceptors
+import { AuthInterceptor } from './middleware/auth.interceptor';
+import { LoadingInterceptor } from './middleware/loading.interceptor';
+import { AuthContextService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import { LoginComponent } from './pages/login/login.component';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    AuthContextService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ]
 })
 export class AppModule {}

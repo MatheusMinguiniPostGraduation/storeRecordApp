@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController } from 'ionic-angular';
 import { LoginComponent } from './login.component';
 import { HomePage } from '../home/home';
-import { ServiceAPI } from '../../services/api.service';
 import { MessagesUtils } from '../../services/mensagem.service';
-
-
+import { Auth } from '../../services/auth.service';
 
 @NgModule({
     imports: [
         IonicModule,
         CommonModule,
-        HttpClientModule,
         FormsModule
     ],
     declarations: [
@@ -29,7 +25,7 @@ import { MessagesUtils } from '../../services/mensagem.service';
         LoginComponent
     ],
     providers : [
-        ServiceAPI,
+        Auth,
         MessagesUtils
     ]
 })

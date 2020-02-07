@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
-import { HttpClient } from "@angular/common/http";
 import { MessagesUtils } from "../../services/mensagem.service";
-import { ServiceAPI } from "../../services/api.service";
 import { UserVO } from "../../vo/UserVO";
 import { HomePage } from "../home/home";
+import { Auth } from "../../services/auth.service";
+
 
 @Component({
     selector: 'page-login',
@@ -12,15 +12,12 @@ import { HomePage } from "../home/home";
 })
 export class LoginComponent {
 
-    private configurationAPI : ServiceAPI;
     user : UserVO;
 
     constructor(public navCtrl: NavController, 
-        public http: HttpClient,
         public message_utils : MessagesUtils,
-        public serviceAPI : ServiceAPI ) {
+        public authService : Auth ) {
          
-        this.configurationAPI = this.serviceAPI;
     }
 
     ngOnInit(){
@@ -28,15 +25,13 @@ export class LoginComponent {
     }
 
     login(){
-        console.log(this.user.login);
-        console.log(this.user.password);
-
-        if(this.user.areRequiredFieldsFullfiled()){
-            
-            this.navCtrl.push(HomePage);
-        }else{
-            this.message_utils.showErrorMessage('Login e senha são obrigatórios');
-        }
-
+        this.authService.login(this.user).subscribe(
+            response => {
+                this.navCtrl.push(HomePage);
+            },
+            error => {
+                console.log('Erro')
+            }
+        );
     }
 }

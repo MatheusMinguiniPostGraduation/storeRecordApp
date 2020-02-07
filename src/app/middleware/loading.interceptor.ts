@@ -11,7 +11,7 @@ import {
 
 import { Observable } from 'rxjs';
 import { catchError, tap, timeout } from 'rxjs/operators';
-import { LoadingController, AlertController, NavController } from 'ionic-angular';
+import { LoadingController, AlertController } from 'ionic-angular';
 
 
 
@@ -25,7 +25,6 @@ export class LoadingInterceptor implements HttpInterceptor {
   constructor(
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private navCtl: NavController
   ) {
     this.count = 0;
   }

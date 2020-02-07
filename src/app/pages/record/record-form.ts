@@ -8,6 +8,7 @@ import { RecordDetailComponent } from '../record/record-detail';
 
 import { RecordVO } from '../../vo/RecordVO';
 import { MessagesUtils } from '../../services/mensagem.service';
+import { HomeService } from '../../services/home.service';
 
 @Component({
   providers: [ MessagesUtils ],
@@ -22,8 +23,19 @@ export class RecordFormComponent {
   constructor(public navCtrl: NavController, 
               public toastCtrl: ToastController, 
               public http: HttpClient,
-              public message_service : MessagesUtils) {}
+              public message_service : MessagesUtils,
+              public homeService : HomeService) {}
 
+  ngOnInit(){
+    this.homeService.getRecord().subscribe(
+      response => {
+        console.log(`Usuário LOGADO: ${response}`)
+      },
+      error => {
+        console.log('Usuário DESLOGADO')
+      }
+    );
+  }
 
   openRecordDetailPage(){
     this.navCtrl.push(RecordDetailComponent);
