@@ -16,7 +16,6 @@ import { LoginComponent } from '../../pages/home/login/login.component';
 
 import { App } from 'ionic-angular';
 
-
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
 
@@ -38,44 +37,46 @@ export class LoadingInterceptor implements HttpInterceptor {
       this.presentLoading();
     }
 
-    return next.handle(req).pipe(timeout(10000), tap((e: HttpEvent<any>) => {
-      if (e.type === HttpEventType.UploadProgress) {
-        //this.dialog.setLoadingMode('determinate');
-        //this.dialog.setLoadingValue(Math.round(100 * e.loaded / e.total));
-      } else if (e instanceof HttpResponse) {
-        this.count--;
-        if (this.count === 0) {
-          this.closeLoading();
-        }
-      }
-    }),
-      catchError(e => {
-        this.closeLoading();
-        if (e instanceof HttpErrorResponse) {
-          debugger;
-          
-          if (e.status === 401){
-            //User provided wrong information
-            setTimeout(() => {
-              this.presentAlert('Usuário e/ou senha inválido(s)');
-            }, 100);
-
-          } else if(e.status === 403 || e.status === 0) { 
-            //Indicates the user is not/no longer authenticated
-            setTimeout(() => {
-              this.presentAlert('Sessão expirada. Faça login novamente');
-              localStorage.removeItem('token');
-             
-              this.app.getRootNav().setRoot(LoginComponent);
-            }, 100);
-
-          } else {
-            //If code goes here, the application crashes
-            this.presentAlert(e.error.message);
+    return next.handle(req)
+      .pipe(timeout(10000), 
+        tap((e: HttpEvent<any>) => {
+          if (e.type === HttpEventType.UploadProgress) {
+            //this.dialog.setLoadingMode('determinate');
+            //this.dialog.setLoadingValue(Math.round(100 * e.loaded / e.total));
+          } else if (e instanceof HttpResponse) {
+            this.count--;
+            if (this.count === 0) {
+              this.closeLoading();
+            }
           }
-        }
-        return Observable.throw(new Error(e.status));
-      }));
+        }),
+        catchError(e => {
+          this.closeLoading();
+          if (e instanceof HttpErrorResponse) {
+            debugger;
+            
+            if (e.status === 401){
+              //User provided wrong information
+              setTimeout(() => {
+                this.presentAlert('Usuário e/ou senha inválido(s)');
+              }, 100);
+
+            } else if(e.status === 403 || e.status === 0) { 
+              //Indicates the user is not/no longer authenticated
+              setTimeout(() => {
+                this.presentAlert('Sessão expirada. Faça login novamente');
+                localStorage.removeItem('token');
+                this.app.getRootNav().setRoot(LoginComponent);
+              }, 100);
+
+            } else {
+              //Fallback for a generic error, it is, no HttpResponse included
+              this.presentAlert(e.error.message);
+            }
+          }
+          return Observable.throw(new Error(e.status));
+        })
+      );
   }
 
   async presentLoading() {
