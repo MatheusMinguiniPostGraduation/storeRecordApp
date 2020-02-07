@@ -11,6 +11,7 @@ import { Auth } from "../../../core/auth.service";
 })
 export class LoginComponent {
     user : UserVO;
+
     constructor(public navCtrl: NavController, public authService : Auth ) {}
 
     ngOnInit(){
