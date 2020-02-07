@@ -11,9 +11,9 @@ import { MyApp } from './app.component';
 //Declaring app things here
 
 //Modules
-import { RecordModule } from '../pages/record/record.module';
-import { LoginModule } from '../pages/login/login.module';
-import { LoginComponent } from '../pages/login/login.component';
+import { RecordModule } from './pages/record/record.module';
+import { LoginModule } from './pages/login/login.module';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
