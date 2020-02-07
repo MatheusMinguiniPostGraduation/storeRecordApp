@@ -7,7 +7,7 @@ export class RecordVO {
   total : number;
   creation_date : Date;
   //List
-  payments : String;
+  payments : string;
 
 
   constructor(){

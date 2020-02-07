@@ -7,7 +7,7 @@ import {
   HttpRequest
 } from '@angular/common/http';
 
-import { AuthContextService } from '../services/authentication.service';
+import { AuthContextService } from '../authentication.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -23,5 +23,3 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 }
-
-

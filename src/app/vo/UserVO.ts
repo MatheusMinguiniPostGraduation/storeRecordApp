@@ -1,20 +1,10 @@
 
 export class UserVO {
 
-  id : number;
-  login : String;
-  password : String;
-  email : String;
+  public id : number;
+  public login : string;
+  public password : string;
+  public email : string;
 
-  constructor(){
-
-  }
-
-  areRequiredFieldsFullfiled(){
-    if(!this.login || !this.password) {
-      return false;
-    }else{
-      return true;
-    }
-  }
+  constructor(){}
 }

@@ -5,13 +5,10 @@ import { ToastController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 import { RecordDetailComponent } from '../record/record-detail';
-
 import { RecordVO } from '../../vo/RecordVO';
-import { MessagesUtils } from '../../services/mensagem.service';
 import { HomeService } from '../../services/home.service';
 
 @Component({
-  providers: [ MessagesUtils ],
   selector: 'record-form',
   templateUrl: 'record-form.html'
 })
@@ -23,7 +20,6 @@ export class RecordFormComponent {
   constructor(public navCtrl: NavController, 
               public toastCtrl: ToastController, 
               public http: HttpClient,
-              public message_service : MessagesUtils,
               public homeService : HomeService) {}
 
   ngOnInit(){
@@ -42,8 +38,6 @@ export class RecordFormComponent {
   }
 
   save(){
-
-    this.message_service.showSuccessfullMessage();
 
     this.openRecordDetailPage();
 

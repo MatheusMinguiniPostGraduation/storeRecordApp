@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
-import { MessagesUtils } from "../../services/mensagem.service";
-import { UserVO } from "../../vo/UserVO";
-import { HomePage } from "../home/home";
-import { Auth } from "../../services/auth.service";
+import { UserVO } from "../../../vo/UserVO";
+import { HomeComponent } from "../home.component";
+import { Auth } from "../../../core/auth.service";
 
 
 @Component({
@@ -11,14 +10,8 @@ import { Auth } from "../../services/auth.service";
     templateUrl: 'login.html'
 })
 export class LoginComponent {
-
     user : UserVO;
-
-    constructor(public navCtrl: NavController, 
-        public message_utils : MessagesUtils,
-        public authService : Auth ) {
-         
-    }
+    constructor(public navCtrl: NavController, public authService : Auth ) {}
 
     ngOnInit(){
         this.user = new UserVO();
@@ -27,7 +20,7 @@ export class LoginComponent {
     login(){
         this.authService.login(this.user).subscribe(
             response => {
-                this.navCtrl.push(HomePage);
+                this.navCtrl.push(HomeComponent);
             },
             error => {
                 console.log('Erro')

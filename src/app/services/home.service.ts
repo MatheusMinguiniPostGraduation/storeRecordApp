@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { AuthContextService } from "./authentication.service";
+import { AuthContextService } from "../core/authentication.service";
 import { Injectable } from "@angular/core";
 import { tap, catchError } from "rxjs/operators";
 

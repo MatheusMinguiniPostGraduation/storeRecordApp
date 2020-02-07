@@ -6,7 +6,7 @@ import { RecordSearchComponent } from '../record/record-search';
   templateUrl: 'home.html'
 })
 
-export class HomePage {
+export class HomeComponent {
 
   public userName : String;
 

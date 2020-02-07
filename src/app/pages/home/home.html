@@ -9,10 +9,14 @@
 <ion-content padding>
 
     <ion-toolbar>
-      <ion-title>Bem vindo, usuário {{userName}}</ion-title>
+      <ion-title>
+        <ion-icon name="person" item-start></ion-icon>
+        Olá, {{userName}}</ion-title>
     </ion-toolbar>
-
-    <ion-card style="margin-top: 10vh">
+    
+    <p style="margin-top: 5vh">Abaixo estão algumas informações que podem ser úteis para você</p>
+    
+    <ion-card color="default-blue" style="margin-top: 10vh">
       <ion-card-content> 
         <ion-list>
             <ion-row>

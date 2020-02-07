@@ -11,9 +11,10 @@ import {
 
 import { Observable } from 'rxjs';
 import { catchError, tap, timeout } from 'rxjs/operators';
-import { LoadingController, AlertController } from 'ionic-angular';
+import { LoadingController, AlertController, NavController } from 'ionic-angular';
+import { LoginComponent } from '../../pages/home/login/login.component';
 
-
+import { App } from 'ionic-angular';
 
 
 @Injectable()
@@ -25,6 +26,7 @@ export class LoadingInterceptor implements HttpInterceptor {
   constructor(
     private loadingController: LoadingController,
     private alertController: AlertController,
+    private app: App
   ) {
     this.count = 0;
   }
@@ -38,8 +40,8 @@ export class LoadingInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(timeout(10000), tap((e: HttpEvent<any>) => {
       if (e.type === HttpEventType.UploadProgress) {
-        // this.dialog.setLoadingMode('determinate');
-        // this.dialog.setLoadingValue(Math.round(100 * e.loaded / e.total));
+        //this.dialog.setLoadingMode('determinate');
+        //this.dialog.setLoadingValue(Math.round(100 * e.loaded / e.total));
       } else if (e instanceof HttpResponse) {
         this.count--;
         if (this.count === 0) {
@@ -50,20 +52,27 @@ export class LoadingInterceptor implements HttpInterceptor {
       catchError(e => {
         this.closeLoading();
         if (e instanceof HttpErrorResponse) {
-          if (e.status === 401) {
-            if (e.statusText === 'Unauthorized') {
-              setTimeout(() => {
-                localStorage.removeItem('token');
-                //this.navCtl.navigateRoot('/signin');
-              }, 1000);
-            }
-            this.presentAlert(e.error.message);
+          debugger;
+          
+          if (e.status === 401){
+            //User provided wrong information
+            setTimeout(() => {
+              this.presentAlert('Usuário e/ou senha inválido(s)');
+            }, 100);
+
+          } else if(e.status === 403 || e.status === 0) { 
+            //Indicates the user is not/no longer authenticated
+            setTimeout(() => {
+              this.presentAlert('Sessão expirada. Faça login novamente');
+              localStorage.removeItem('token');
+             
+              this.app.getRootNav().setRoot(LoginComponent);
+            }, 100);
+
           } else {
+            //If code goes here, the application crashes
             this.presentAlert(e.error.message);
           }
-        }
-        if (e.name == 'TimeoutError') {
-          this.presentAlert(e.message);
         }
         return Observable.throw(new Error(e.status));
       }));
@@ -86,13 +95,10 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   async presentAlert(msg: string) {
     const alert = await this.alertController.create({
-      // header: 'Alert',
-      // subHeader: 'Subtitle',
       message: msg,
       buttons: ['OK']
     });
 
     await alert.present();
   }
-
 }

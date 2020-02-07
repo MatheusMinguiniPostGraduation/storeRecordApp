@@ -7,7 +7,6 @@ import { RecordFormComponent } from './record-form';
 import { RecordSearchComponent } from './record-search';
 import { IonicModule } from 'ionic-angular';
 import { MenuComponent } from '../menu/menu.component';
-import { MessagesUtils } from '../../services/mensagem.service';
 import { HomeService } from '../../services/home.service';
 
 @NgModule({
@@ -35,7 +34,6 @@ import { HomeService } from '../../services/home.service';
         RecordSearchComponent
     ],
     providers : [
-        MessagesUtils,
         HomeService
     ]
 })

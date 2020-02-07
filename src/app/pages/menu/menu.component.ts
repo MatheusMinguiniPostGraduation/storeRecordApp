@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
     selector: 'menu-component',
@@ -14,6 +14,6 @@ export class MenuComponent{
     }
     
     goToHome(){
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(HomeComponent);
     }
 }

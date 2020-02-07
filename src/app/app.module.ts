@@ -7,18 +7,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 
-
 //Declaring app things here
 
 //Modules
 import { RecordModule } from './pages/record/record.module';
-import { LoginModule } from './pages/login/login.module';
-import { LoginComponent } from './pages/login/login.component';
+import { HomeModule } from './pages/home/home.module';
 
 //Interceptors
-import { AuthInterceptor } from './middleware/auth.interceptor';
-import { LoadingInterceptor } from './middleware/loading.interceptor';
-import { AuthContextService } from './services/authentication.service';
+import { AuthInterceptor } from './core/middleware/auth.interceptor';
+import { LoadingInterceptor } from './core/middleware/loading.interceptor';
+import { AuthContextService } from './core/authentication.service';
 
 @NgModule({
   declarations: [
@@ -27,14 +25,15 @@ import { AuthContextService } from './services/authentication.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    LoginModule,
+
+    HomeModule,
     RecordModule,
+
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    LoginComponent
+    MyApp
   ],
   providers: [
     StatusBar,
