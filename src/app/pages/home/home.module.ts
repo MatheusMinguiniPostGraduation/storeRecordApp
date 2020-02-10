@@ -5,6 +5,7 @@ import { IonicModule, ToastController } from 'ionic-angular';
 import { LoginComponent } from './login/login.component';
 import { Auth } from '../../core/auth.service';
 import { HomeComponent } from './home.component';
+import { HomeService } from '../../services/home.service';
 
 @NgModule({
 
@@ -25,7 +26,8 @@ import { HomeComponent } from './home.component';
         FormsModule
     ],
     providers : [
-        Auth
+        Auth, 
+        HomeService
     ]
 })
 export class HomeModule{

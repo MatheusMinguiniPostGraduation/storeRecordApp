@@ -18,6 +18,9 @@ export class AuthContextService {
   }
 
   getEncodedToken(): any {
+    if(localStorage.getItem('token')){
+      return localStorage.getItem('token').replace(/\"/g, "") //Removing double quote from storaged token hash
+    }
     return localStorage.getItem('token');
   }
 

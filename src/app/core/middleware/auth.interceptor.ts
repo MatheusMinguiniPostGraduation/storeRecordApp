@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(public authContext: AuthContextService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(`Token:    Bearer ${this.authContext.getEncodedToken()}`)
+    
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.authContext.getEncodedToken()}`

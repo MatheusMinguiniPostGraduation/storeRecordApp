@@ -13,8 +13,8 @@ export class HomeService {
 
     constructor ( private http: HttpClient, private authContext: AuthContextService) {}
 
-    getRecord(): Observable<any> {
-        return this.http.get<any>(`http://127.0.0.1:8080/records/2`, httpOptions)
+    getRecords(): Observable<any> {
+        return this.http.get<any>(`http://127.0.0.1:8080/records`, httpOptions)
             .pipe(
                 catchError(error => {
                     this.authContext.logout();

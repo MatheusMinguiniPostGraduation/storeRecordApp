@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
-import { HttpClient } from '@angular/common/http';
 
 import { RecordDetailComponent } from '../record/record-detail';
 import { RecordVO } from '../../vo/RecordVO';
@@ -18,20 +17,9 @@ export class RecordFormComponent {
   private _record : RecordVO;
   
   constructor(public navCtrl: NavController, 
-              public toastCtrl: ToastController, 
-              public http: HttpClient,
-              public homeService : HomeService) {}
+              public toastCtrl: ToastController) {}
 
-  ngOnInit(){
-    this.homeService.getRecord().subscribe(
-      response => {
-        console.log(`Usuário LOGADO: ${response}`)
-      },
-      error => {
-        console.log('Usuário DESLOGADO')
-      }
-    );
-  }
+  ngOnInit(){}
 
   openRecordDetailPage(){
     this.navCtrl.push(RecordDetailComponent);
