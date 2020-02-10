@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { Auth } from '../../core/auth.service';
 import { HomeComponent } from './home.component';
 import { HomeService } from '../../services/home.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 
@@ -23,7 +24,8 @@ import { HomeService } from '../../services/home.service';
     imports: [
         IonicModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
     providers : [
         Auth, 

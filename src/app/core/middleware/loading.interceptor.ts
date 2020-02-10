@@ -11,7 +11,7 @@ import {
 
 import { Observable } from 'rxjs';
 import { catchError, tap, timeout } from 'rxjs/operators';
-import { LoadingController, AlertController, NavController } from 'ionic-angular';
+import { LoadingController, AlertController } from 'ionic-angular';
 import { LoginComponent } from '../../pages/home/login/login.component';
 
 import { App } from 'ionic-angular';
@@ -53,15 +53,13 @@ export class LoadingInterceptor implements HttpInterceptor {
         catchError(e => {
           this.closeLoading();
           if (e instanceof HttpErrorResponse) {
-            debugger;
-            
             if (e.status === 401){
               //User provided wrong information
               setTimeout(() => {
                 this.presentAlert('Usuário e/ou senha inválido(s)');
               }, 100);
 
-            } else if(e.status === 403 || e.status === 0) { 
+            } else if(e.status === 403) { 
               //Indicates the user is not/no longer authenticated
               setTimeout(() => {
                 this.presentAlert('Sessão expirada. Faça login novamente');
@@ -71,7 +69,7 @@ export class LoadingInterceptor implements HttpInterceptor {
 
             } else {
               //Fallback for a generic error, it is, no HttpResponse included
-              this.presentAlert(e.error.message);
+              this.presentAlert('Estamos trabalhando para melhorar. Tente em alguns minutos');
             }
           }
           return Observable.throw(new Error(e.status));

@@ -5,7 +5,7 @@ import { ToastController } from 'ionic-angular';
 
 import { RecordDetailComponent } from '../record/record-detail';
 import { RecordVO } from '../../vo/RecordVO';
-import { HomeService } from '../../services/home.service';
+import { RecordService } from '../../services/record.service';
 
 @Component({
   selector: 'record-form',
@@ -14,12 +14,15 @@ import { HomeService } from '../../services/home.service';
 
 export class RecordFormComponent {
 
-  private _record : RecordVO;
+  record : RecordVO;
   
   constructor(public navCtrl: NavController, 
-              public toastCtrl: ToastController) {}
+              public toastCtrl: ToastController,
+              public service : RecordService) {}
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.record = new RecordVO();
+  }
 
   openRecordDetailPage(){
     this.navCtrl.push(RecordDetailComponent);
@@ -27,16 +30,15 @@ export class RecordFormComponent {
 
   save(){
 
-    this.openRecordDetailPage();
+    this.service.save(this.record).subscribe(
+      response => {
+        
+      },
+      error => {
+        console.log('Erro')
+      }
+    )
 
-   /* this.http
-    .post(this.configuration.getResourceAddress(), this._record, null).subscribe
-      (data => {
-        this.message_service.showSuccessfullMessage();
-        this.navCtrl.push(RecordDetail);
-      }, err => {     
-        this.message_service.showErrorMessage();
-      });*/
   }
 
 }

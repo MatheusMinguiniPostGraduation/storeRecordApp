@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { RecordFormComponent } from '../record/record-form';
+import { RecordService } from '../../services/record.service';
+import { RecordVO } from '../../vo/RecordVO';
 
 @Component({
   templateUrl: 'record-search.html'
@@ -8,12 +10,30 @@ import { RecordFormComponent } from '../record/record-form';
 
 export class RecordSearchComponent {
 
-  constructor(public navCtrl: NavController) {
+  name : string;
+  records : RecordVO[];
 
+  constructor(private navCtrl: NavController, private service: RecordService ) {
+
+  }
+
+  ngOnInit(){
+    this.records = [];
   }
 
   openRecordFormPage(){
     this.navCtrl.push(RecordFormComponent);
+  }
+
+  search(){
+    this.service.search(this.name).subscribe(
+      response  => {
+        this.records = response;
+      },
+      error => {
+        console.log('Erro')
+      }
+    )
   }
 
 }

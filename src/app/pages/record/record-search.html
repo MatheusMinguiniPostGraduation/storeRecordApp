@@ -13,17 +13,11 @@
     <ion-list>
 
         <ion-item>
-            <ion-label fixed>Nome</ion-label>
-            <ion-input type="text" value=""></ion-input>
+            <ion-input placeholder="Nome ou sobrenome" [(ngModel)]="name" type="text" ></ion-input>
         </ion-item>
         
         <ion-item>
-            <ion-label fixed>Sobrenome</ion-label>
-            <ion-input type="password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <button ion-button large color="default-blue" full icon-end>
+            <button ion-button large color="default-blue" full icon-end (click)="search()">
                 Buscar
                 <ion-icon name="search"></ion-icon>
             </button>
@@ -31,36 +25,23 @@
         
     </ion-list>
 
-    <ion-grid>
+    <h5> Número de fichas encontradas: {{records.length}} </h5>
+
+    <ion-grid *ngFor="let record of records; let i = index">
         <ion-row>
             <ion-card>
                 <ion-card-content>
                     <ion-row>
                         <ion-col>
-                            Silvia Simões Minguini
+                            {{record.costumer.name}} {{record.costumer.lastName}}
                         </ion-col>
                         <ion-col>
-                            <ion-badge color="danger" item-end>R$ 5.000</ion-badge>
+                            <ion-badge color="danger" item-end>{{record.total | currency:'BRL':true}}</ion-badge>
                         </ion-col>
                     </ion-row>
                 </ion-card-content>
             </ion-card>
         </ion-row>
-
-        <ion-row>
-                <ion-card>
-                    <ion-card-content>
-                        <ion-row>
-                            <ion-col>
-                                Silvia Marina
-                            </ion-col>
-                            <ion-col>
-                                <ion-badge color="danger" item-end>R$ 2.750,75</ion-badge>
-                            </ion-col>
-                        </ion-row>
-                    </ion-card-content>
-                </ion-card>
-            </ion-row>
     </ion-grid>
 
     <ion-fab right bottom>

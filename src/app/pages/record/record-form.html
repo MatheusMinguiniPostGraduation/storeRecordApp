@@ -14,16 +14,16 @@
 
         <ion-item>
             <ion-label fixed>Nome</ion-label>
-            <ion-input type="text" value=""></ion-input>
+            <ion-input type="text" [(ngModel)]="record.name"></ion-input>
         </ion-item>
         
         <ion-item>
             <ion-label fixed>Sobrenome</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [(ngModel)]="record.lastName" ></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-textarea placeholder="Informações adicionais" [(ngModel)]="note" ></ion-textarea>
+            <ion-textarea placeholder="Informações adicionais" [(ngModel)]="record.extraInformation"></ion-textarea>
         </ion-item>
 
         <ion-item>

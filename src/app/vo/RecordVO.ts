@@ -3,9 +3,15 @@ import { Costumer } from '../vo/CostumerVO';
 export class RecordVO {
 
   id : number;
+  
+  name : string;
+  lastName : string;
+  extraInformation : string;
+
   costumer : Costumer;
   total : number;
   creation_date : Date;
+ 
   //List
   payments : string;
 

@@ -27,13 +27,13 @@
                 <ion-item>
                   <ion-icon name="calculator" item-start></ion-icon>
                     Total fichas
-                  <ion-badge color="secondary" item-end>R$ 5.000</ion-badge>
+                  <ion-badge color="secondary" item-end>{{recordsTotalValue | currency:'BRL':true}}</ion-badge>
                 </ion-item>
       
                 <ion-item>
                   <ion-icon name="cash" item-start></ion-icon>
                     Pagamentos
-                  <ion-badge color="secondary" item-end>R$ 2.000</ion-badge>
+                  <ion-badge color="secondary" item-end>{{paymentsTotalValue | currency:'BRL':true}}</ion-badge>
                 </ion-item>
             </ion-row>
         </ion-list>
