@@ -12,23 +12,30 @@
 <ion-content padding>
     <ion-grid>
         <ion-item>
-            <ion-input placeholder="Nome" type="text" [(ngModel)]="record.costumer.name"></ion-input>
+            <ion-label floating>Nome: <span class="required_field_span">*</span></ion-label>
+            <ion-input type="text" [(ngModel)]="record.costumer.name"></ion-input>
         </ion-item>
         
         <ion-item>
-            <ion-input placeholder="Sobrenome" type="text" [(ngModel)]="record.costumer.lastName"></ion-input>
+            <ion-label floating>Sobrenome: <span class="required_field_span">*</span></ion-label>
+            <ion-input type="text" [(ngModel)]="record.costumer.lastName"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-textarea placeholder="Informações adicionais" [(ngModel)]="record.costumer.extraInformation"></ion-textarea>
+            <ion-label floating>Informações adicionais: </ion-label>
+            <ion-textarea [(ngModel)]="record.costumer.extraInformation"></ion-textarea>
         </ion-item>
     </ion-grid>
     
-    <br><br>
+    <br>
 
-    <button ion-button large color="default-blue" full icon-end (click)="save()">
+    <button [disabled]="(!record.costumer.name || !record.costumer.lastName)" ion-button large color="default-blue" full icon-end (click)="save()">
         Cadastrar 
         <ion-icon name="checkmark"></ion-icon>
     </button>
+
+    <p> Os campos com <span class="required_field_span">*</span> são obrigatórios </p>
+
+    
 
 </ion-content>

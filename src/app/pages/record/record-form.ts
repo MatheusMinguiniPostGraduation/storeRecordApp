@@ -35,7 +35,7 @@ export class RecordFormComponent {
         this.openRecordDetailPage(this.record);
       },
       error => {
-        this.messageUtil.showErrorMessage();
+        if(error.message == 409) this.messageUtil.showErrorMessage('Um cliente com este nome já existe')
       }
     )
 
