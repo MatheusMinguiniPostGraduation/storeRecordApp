@@ -67,12 +67,12 @@ export class LoadingInterceptor implements HttpInterceptor {
                 this.app.getRootNav().setRoot(LoginComponent);
               }, 100);
 
-            } else {
-              //Fallback for a generic error, it is, no HttpResponse included
+            } else if (e.status >= 500 || e.status <= 599) {
+              //Fallback for a server side error
               this.presentAlert('Estamos trabalhando para melhorar. Tente em alguns minutos');
             }
           }
-          return Observable.throw(new Error(e.status));
+          return Observable.throw(e.status);
         })
       );
   }
