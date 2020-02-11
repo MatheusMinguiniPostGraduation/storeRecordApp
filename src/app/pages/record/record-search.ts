@@ -13,6 +13,7 @@ export class RecordSearchComponent {
 
   name : string;
   records : RecordVO[];
+  noRecordsFound: boolean = false;
 
   constructor(private navCtrl: NavController, private service: RecordService ) {
 
@@ -30,6 +31,9 @@ export class RecordSearchComponent {
     this.service.search(this.name).subscribe(
       response  => {
         this.records = response;
+        if(response.length == 0){
+          this.noRecordsFound = true
+        }
       },
       error => {
         console.log('Erro')

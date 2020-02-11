@@ -25,22 +25,28 @@
 
     <h5> Número de fichas encontradas: {{records.length}} </h5>
 
-    <ion-grid *ngFor="let record of records; let i = index">
-        <ion-row>
-            <ion-card>
-                <ion-card-content>
-                    <ion-row (click)="openDetailPage(record)">
-                        <ion-col>
-                            {{record.costumer.name}} {{record.costumer.lastName}}
-                        </ion-col>
-                        <ion-col>
-                            <ion-badge color="danger" item-end>{{record.total | currency:'BRL':true}}</ion-badge>
-                        </ion-col>
-                    </ion-row>
-                </ion-card-content>
-            </ion-card>
-        </ion-row>
-    </ion-grid>
+    <div *ngIf="noRecordsFound == true">
+        <img src="../../assets/imgs/norecord.png">
+    </div>
+
+    <div *ngIf="noRecordsFound == false">
+        <ion-grid *ngFor="let record of records; let i = index">
+            <ion-row>
+                <ion-card>
+                    <ion-card-content>
+                        <ion-row (click)="openDetailPage(record)">
+                            <ion-col>
+                                {{record.costumer.name}} {{record.costumer.lastName}}
+                            </ion-col>
+                            <ion-col>
+                                <ion-badge color="danger" item-end>{{record.total | currency:'BRL':true}}</ion-badge>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-row>
+        </ion-grid>
+    </div>
 
     <ion-fab right bottom>
         <button ion-fab color="default-blue" (click)="openRecordFormPage()">
