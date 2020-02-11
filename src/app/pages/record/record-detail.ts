@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { RecordVO } from '../../vo/RecordVO';
 
 
 @Component({
@@ -7,6 +8,13 @@ import { NavController } from 'ionic-angular';
 })
 
 export class RecordDetailComponent {
-  constructor(public navCtrl: NavController) {}
+  
+  record : RecordVO;
+
+  constructor(public navCtrl: NavController, public navigationParameters: NavParams) {
+    this.record = navigationParameters.get('record');
+  }
+
+  ngOnInit(){}
 
 }

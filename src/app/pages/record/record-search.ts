@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { RecordFormComponent } from '../record/record-form';
 import { RecordService } from '../../services/record.service';
 import { RecordVO } from '../../vo/RecordVO';
+import { RecordDetailComponent } from './record-detail';
 
 @Component({
   templateUrl: 'record-search.html'
@@ -34,6 +35,10 @@ export class RecordSearchComponent {
         console.log('Erro')
       }
     )
+  }
+
+  openDetailPage(record : RecordVO){
+    this.navCtrl.push(RecordDetailComponent, {record : record});
   }
 
 }

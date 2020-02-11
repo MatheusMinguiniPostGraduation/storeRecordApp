@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IonicModule, ToastController } from 'ionic-angular';
+import { IonicModule } from 'ionic-angular';
 import { LoginComponent } from './login/login.component';
 import { Auth } from '../../core/auth.service';
 import { HomeComponent } from './home.component';

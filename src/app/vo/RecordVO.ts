@@ -17,11 +17,12 @@ export class RecordVO {
 
 
   constructor(){
-
+    this.total = 0.0
+    this.costumer = new Costumer();
   }
 
   areRequiredFieldsFullfiled(){
-    if(!this.costumer.last_name || !this.costumer.name) {
+    if(!this.costumer.lastName || !this.costumer.name) {
       return false;
     }else{
       return true;

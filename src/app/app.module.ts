@@ -21,6 +21,7 @@ import { AuthContextService } from './core/authentication.service';
 //Money currence
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { MessagesUtil } from './util/message.util';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(ptBr)
     { provide: ErrorHandler, useClass: IonicErrorHandler},
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
-    { provide: LOCALE_ID, useValue: 'pt-PT'}
+    { provide: LOCALE_ID, useValue: 'pt-PT'},
+    MessagesUtil
   ]
 })
 export class AppModule {}

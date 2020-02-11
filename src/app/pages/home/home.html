@@ -3,6 +3,11 @@
     <ion-title>
       Home
     </ion-title>
+    <ion-buttons end>
+        <button  clear ion-button color="default-blue" icon-only (click)="logout()" end>
+            <ion-icon name="power"></ion-icon>
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -10,7 +15,7 @@
 
     <ion-toolbar>
       <ion-title>
-        <ion-icon name="person" item-start></ion-icon>
+        <ion-icon name="contact" item-start></ion-icon>
         Olá, {{userName}}</ion-title>
     </ion-toolbar>
     
