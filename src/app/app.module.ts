@@ -23,6 +23,7 @@ import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { MessagesUtil } from './util/message.util';
 import { RestUtil } from './util/environmet.util';
+import { SaleModule } from './pages/sale/sale.module';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -33,6 +34,7 @@ registerLocaleData(ptBr)
     BrowserModule,
     HomeModule,
     RecordModule,
+    SaleModule,
 
     IonicModule.forRoot(MyApp)
   ],

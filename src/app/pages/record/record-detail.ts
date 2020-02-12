@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { RecordVO } from '../../vo/RecordVO';
 import { RecordService } from '../../services/record.service';
 import { MessagesUtil } from '../../util/message.util';
+import { SaleFormComponent } from '../sale/sale-form';
 
 
 @Component({
@@ -29,6 +30,11 @@ export class RecordDetailComponent {
     this.costumerName = `${this.record.costumer.name} ${this.record.costumer.lastName}`;
   }
 
+
+  openSaleScreen(){
+    this.navCtrl.push(SaleFormComponent, {record : this.record});
+  }
+  
   update(){
     this.service.update(this.record).subscribe(
       response => {

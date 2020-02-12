@@ -1,0 +1,85 @@
+<ion-header>
+        <ion-navbar>
+            <ion-title>
+                Vendas 
+            </ion-title>
+            <!--
+            <ion-buttons end>
+                <menu-component></menu-component>
+            </ion-buttons>-->
+        </ion-navbar>
+    </ion-header>
+    
+    <ion-content padding>
+                 
+    <ion-title>
+        <ion-badge color="dark" item-end>Vendendo para: {{record.costumer.name}} {{record.costumer.lastName}}</ion-badge>
+    </ion-title>
+        
+    <ion-grid>
+        <ion-item>
+            <ion-label fixed><b>Descrição</b></ion-label>
+            <ion-input #productDescriptionInput type="text" [(ngModel)]="productDescription"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+            <ion-label fixed><b>Preço R$</b></ion-label>
+            <ion-input [brmasker]="{money: true}" [(ngModel)]="productValue"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label fixed><b>Quantidade</b></ion-label>
+            <ion-input type="number" min="1" max="10" [(ngModel)]="amount"></ion-input>
+        </ion-item>
+    </ion-grid>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-10>
+                <p [ngClass]="{'total-value-with-products': sale.products.length > 0, 'total-value-with-no-products': sale.products.length == 0}">
+                    Total: {{sale.total | currency:'BRL':true}}
+                </p>
+            </ion-col>
+
+            <ion-col col-2>
+                <button [disabled]="(!productDescription || !productValue || !amount)" 
+                large clear ion-button color="secondary" icon-only (click)="addProduct()">
+                    <ion-icon name="add-circle"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <p style="font-weight: bold;"> Total de itens: {{sale.products.length}}</p>
+    
+    <ion-grid fixed>
+
+        <ion-row *ngFor="let product of sale.products; let i = index">
+
+            <ion-col col-5>
+                <p>{{product.description}}</p>
+            </ion-col>
+
+            <ion-col col-2>
+                <p>{{product.amount}} un.</p>
+            </ion-col>
+
+            <ion-col col-3>
+                <p>{{product.value | currency:'BRL':true}}</p>
+            </ion-col>
+
+            <ion-col col-2>
+                <button clear ion-button color="danger" icon-only (click)="removeProduct(i)" end>
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </ion-col>
+
+        </ion-row>
+
+    </ion-grid>
+
+    <button [disabled]="sale.products.length == 0" ion-button color="secondary" (click)="save()" full>
+        Finalizar
+    </button>
+            
+</ion-content>
