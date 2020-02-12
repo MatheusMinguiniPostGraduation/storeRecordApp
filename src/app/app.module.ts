@@ -22,6 +22,7 @@ import { AuthContextService } from './core/authentication.service';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { MessagesUtil } from './util/message.util';
+import { RestUtil } from './util/environmet.util';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -47,7 +48,8 @@ registerLocaleData(ptBr)
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'pt-PT'},
-    MessagesUtil
+    MessagesUtil,
+    RestUtil
   ]
 })
 export class AppModule {}

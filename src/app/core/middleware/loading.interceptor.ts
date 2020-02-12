@@ -67,7 +67,10 @@ export class LoadingInterceptor implements HttpInterceptor {
                 this.app.getRootNav().setRoot(LoginComponent);
               }, 100);
 
-            } else if (e.status >= 500 || e.status <= 599) {
+            } else if (e.status == 0 || (e.status >= 500 && e.status <= 599) ) {
+              
+              //For some reason, when the connection is refused, that is, the server is down, the status is 0, although it should be 503
+
               //Fallback for a server side error
               this.presentAlert('Estamos trabalhando para melhorar. Tente em alguns minutos');
             }

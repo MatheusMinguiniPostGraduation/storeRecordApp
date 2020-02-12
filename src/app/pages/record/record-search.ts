@@ -13,7 +13,7 @@ export class RecordSearchComponent {
 
   name : string;
   records : RecordVO[];
-  noRecordsFound: boolean = false;
+  noRecordsFound: boolean;
 
   constructor(private navCtrl: NavController, private service: RecordService ) {
 
@@ -21,6 +21,7 @@ export class RecordSearchComponent {
 
   ngOnInit(){
     this.records = [];
+    this.noRecordsFound = false;
   }
 
   openRecordFormPage(){

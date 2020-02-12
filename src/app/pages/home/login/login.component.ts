@@ -16,6 +16,8 @@ export class LoginComponent {
 
     ngOnInit(){
         this.user = new UserVO();
+        this.user.login = 'minguini';
+        this.user.password = 'teste';
     }
 
     login(){
