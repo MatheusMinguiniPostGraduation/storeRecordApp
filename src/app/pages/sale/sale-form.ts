@@ -21,17 +21,23 @@ export class SaleFormComponent {
 
   amount : number;
 
+  total : number;
+
   @ViewChild("productDescriptionInput") productDescriptionInput;
 
   constructor(public navCtrl : NavController, 
               public navigationParameters: NavParams, 
               public service : SaleService,
-              public messageUtil :  MessagesUtil) {}
+              public messageUtil :  MessagesUtil) {
+
+                this.total = 0.0;
+              }
 
   ngOnInit(){
     this.record = this.navigationParameters.get('record');
-    this.sale = new SaleVO;
+    this.sale = new SaleVO();
     this.amount = 1;
+    
   }
 
   addProduct(){
@@ -40,11 +46,11 @@ export class SaleFormComponent {
 
     product.amount = this.amount;
     product.description = this.productDescription;
-    product.value = (parseFloat(this.productValue) * this.amount);
+    product.total_value = (parseFloat(this.productValue) * this.amount);
 
   
     this.sale.products.push(product);
-    this.sale.total += product.value;
+    this.total += product.total_value;
 
 
     this.resetForm();
@@ -53,7 +59,7 @@ export class SaleFormComponent {
   removeProduct(index){
     let product = this.sale.products[index];
 
-    this.sale.total -= product.value;
+    this.total -= product.total_value;
     this.sale.products.splice(index, 1);
   }
 

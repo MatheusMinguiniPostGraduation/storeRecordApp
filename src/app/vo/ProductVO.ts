@@ -5,12 +5,15 @@ export class ProductVO {
 
     description : string;
 
-    value : number;
+    unit_value : number;
+
+    total_value: number;
 
     amount: number;
     
     constructor(){
-        this.value = 0.0;
+        this.unit_value = 0.0;
+        this.total_value = 0.0;
         this.amount = 0;
     }
 }

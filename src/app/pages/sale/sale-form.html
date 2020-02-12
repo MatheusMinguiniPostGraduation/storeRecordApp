@@ -37,7 +37,7 @@
         <ion-row>
             <ion-col col-10>
                 <p [ngClass]="{'total-value-with-products': sale.products.length > 0, 'total-value-with-no-products': sale.products.length == 0}">
-                    Total: {{sale.total | currency:'BRL':true}}
+                    Total: {{total | currency:'BRL':true}}
                 </p>
             </ion-col>
 
@@ -65,7 +65,7 @@
             </ion-col>
 
             <ion-col col-3>
-                <p>{{product.value | currency:'BRL':true}}</p>
+                <p>{{product.total_value | currency:'BRL':true}}</p>
             </ion-col>
 
             <ion-col col-2>
