@@ -1,0 +1,44 @@
+<ion-header>
+        <ion-navbar>
+            <ion-title>
+                Pagamentos 
+            </ion-title>
+            <!--
+            <ion-buttons end>
+                <menu-component></menu-component>
+            </ion-buttons>-->
+        </ion-navbar>
+    </ion-header>
+    
+    <ion-content padding>
+                 
+    <ion-title>
+        <ion-badge color="dark" item-end>Recebendo de: {{record.costumer.name}} {{record.costumer.lastName}}</ion-badge>
+    </ion-title>
+        
+    <ion-grid>
+        <ion-item>
+            <ion-label fixed><b>Valor R$</b></ion-label>
+            <ion-input type="tel" [brmasker]="{money: true, decimal:0}" [(ngModel)]="informedValue"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label><b>Data</b></ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="informedDate" ></ion-datetime>
+        </ion-item>
+    </ion-grid>
+
+    <!--[disabled]="record.total < payment.value"  -->
+    
+    <button 
+    large clear ion-button color="danger" icon-only (click)="save()">
+        <ion-icon name="cash"></ion-icon>
+    </button>
+   
+
+    <button [disabled]="( (!payment.value || payment.value == 0) && !payment.date )"
+     ion-button color="secondary" (click)="save()" full>
+        Finalizar
+    </button>
+            
+</ion-content>

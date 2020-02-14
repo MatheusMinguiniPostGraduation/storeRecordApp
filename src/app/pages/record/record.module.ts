@@ -37,6 +37,4 @@ import { RecordService } from '../../services/record.service';
         RecordService
     ]
 })
-export class RecordModule{
-
-}
+export class RecordModule{}

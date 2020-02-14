@@ -2,8 +2,8 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError } from "rxjs/operators";
-import { RecordVO } from "../vo/RecordVO";
 import { RestUtil } from "../util/environmet.util";
+import { RecordForm } from "../form/RecordForm";
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,8 +14,8 @@ export class RecordService {
 
     constructor ( private http: HttpClient, private restUtil : RestUtil) {}
 
-    save(record : RecordVO): Observable<any> {
-        return this.http.post<any>(`${this.restUtil.getDNS()}/records`, record, httpOptions)
+    save(recordFormJSON : RecordForm): Observable<any> {
+        return this.http.post<any>(`${this.restUtil.getDNS()}/records`, recordFormJSON, httpOptions)
             .pipe(
                 catchError(error => {
                     throw new Error(error);
@@ -23,13 +23,11 @@ export class RecordService {
        )
     };
 
-    update(record : RecordVO) : Observable<any>{
+    update(recordFormJSON : RecordForm) : Observable<any>{
         
-        let url = `${this.restUtil.getDNS()}/records/${record.id}`;
+        let url = `${this.restUtil.getDNS()}/records/${recordFormJSON.id}`;
 
-       console.log(url);
-
-        return this.http.put<any>(url, record)
+        return this.http.put<any>(url, recordFormJSON)
             .pipe(
                 catchError(error => {
                     throw new Error(error);

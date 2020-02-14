@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { RecordDetailComponent } from '../record/record-detail';
-import { RecordVO } from '../../vo/RecordVO';
 import { RecordService } from '../../services/record.service';
 import { MessagesUtil } from '../../util/message.util';
+import { RecordForm } from '../../form/RecordForm';
+import { RecordVO } from '../../vo/RecordVO';
 
 @Component({
   selector: 'record-form',
@@ -13,32 +14,33 @@ import { MessagesUtil } from '../../util/message.util';
 
 export class RecordFormComponent {
 
-  record : RecordVO;
+  record : RecordForm;
   
   constructor(public navCtrl : NavController, 
               public service : RecordService,
               public messageUtil :  MessagesUtil) {}
 
   ngOnInit(){
-    this.record = new RecordVO();
+    this.record = new RecordForm();
   }
 
-  openRecordDetailPage(record : RecordVO){
-    this.navCtrl.push(RecordDetailComponent, {record : this.record});
+  openRecordDetailPage(recordVO : RecordVO){
+    this.navCtrl.push(RecordDetailComponent, {record : recordVO});
   }
 
   save(){
-
     this.service.save(this.record).subscribe(
       response => {
+        let recordVO = new RecordVO();
+        recordVO = response;
+        
         this.messageUtil.showSuccessfullMessage();
-        this.openRecordDetailPage(this.record);
+        this.openRecordDetailPage(recordVO);
       },
       error => {
         if(error.message == 409) this.messageUtil.showErrorMessage('Um cliente com este nome já existe')
       }
     )
-
   }
 
 }

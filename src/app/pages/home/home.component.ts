@@ -7,7 +7,6 @@ import { RecordVO } from '../../vo/RecordVO';
 @Component({
   templateUrl: 'home.html'
 })
-
 export class HomeComponent {
 
   public userName : String;
@@ -40,5 +39,4 @@ export class HomeComponent {
   openSearchRecordScreen(){
     this.navCtrl.push(RecordSearchComponent);
   }
-
 }

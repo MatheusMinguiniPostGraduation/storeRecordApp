@@ -1,9 +1,9 @@
 
-export class Costumer{
+export class CostumerVO {
     id : number;
-    name: string;
+    name : string;
     lastName : string;
-    extra_information: string;
+    extraInformation: string;
 
     constructor(){}
 }

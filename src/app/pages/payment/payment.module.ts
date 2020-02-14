@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from 'ionic-angular';
-import { SaleService } from '../../services/sale.service';
-import { SaleFormComponent } from './sale-form';
-import { SaleSearchComponent } from './sale-search';
 
+import { IonicModule } from 'ionic-angular';
+import { PaymentFormComponent } from './payment-form';
+import { PaymentService } from '../../services/payment.service';
 import { BrMaskerModule } from 'brmasker-ionic-3';
 
 @NgModule({
@@ -14,23 +13,22 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
         IonicModule,
         CommonModule,
         HttpClientModule,
-        FormsModule, 
+        FormsModule,
         BrMaskerModule
     ],
     declarations : [
-        SaleFormComponent,
-        SaleSearchComponent
+      PaymentFormComponent
     ],
     exports : [
-        SaleFormComponent,
-        SaleSearchComponent
+        PaymentFormComponent
     ],
     entryComponents: [
-        SaleFormComponent, 
-        SaleSearchComponent
+        PaymentFormComponent
     ],
     providers : [
-        SaleService
+        PaymentService
     ]
 })
-export class SaleModule{}
+export class PaymentModule{
+
+}

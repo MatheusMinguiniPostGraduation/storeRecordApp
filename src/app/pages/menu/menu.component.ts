@@ -6,12 +6,9 @@ import { HomeComponent } from '../home/home.component';
     selector: 'menu-component',
     templateUrl: 'menu.component.html'
 })
-
 export class MenuComponent{
   
-    constructor(public navCtrl: NavController){
-      
-    }
+    constructor(public navCtrl: NavController){}
     
     goToHome(){
         this.navCtrl.setRoot(HomeComponent);

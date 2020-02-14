@@ -4,15 +4,18 @@ import { RecordVO } from '../../vo/RecordVO';
 import { RecordService } from '../../services/record.service';
 import { MessagesUtil } from '../../util/message.util';
 import { SaleFormComponent } from '../sale/sale-form';
-
+import { SaleSearchComponent } from '../sale/sale-search';
+import { PaymentFormComponent } from '../payment/payment-form';
+import { RecordForm } from '../../form/RecordForm';
 
 @Component({
   templateUrl: 'record-detail.html'
 })
-
 export class RecordDetailComponent {
   
-  record : RecordVO;
+  recordVO : RecordVO;
+
+  recordForm : RecordForm
 
   costumerName : string;
 
@@ -21,32 +24,43 @@ export class RecordDetailComponent {
               public service : RecordService,
               public messageUtil :  MessagesUtil) {
 
-    this.record = navigationParameters.get('record');
-
+    this.initializeScreenObjects();
+   
   }
 
-  ngOnInit(){
-    //Gotta put the full name into a variable because as we manipulate the record attribute, the name changes due to two-way-data-binding
-    this.costumerName = `${this.record.costumer.name} ${this.record.costumer.lastName}`;
+  ionViewWillEnter(){
+    debugger;
+    this.recordVO =  this.navigationParameters.get('record');
+
+    //Converting value object to be possibly updated later on
+    this.recordForm.convertVOIntoForm(this.recordVO);
+
+    // Gotta put the full name into a variable because as we manipulate the record attribute, 
+    // the name changes due to two-way-data-binding
+    this.costumerName = `${this.recordVO.costumer.name} ${this.recordVO.costumer.lastName}`;
   }
 
+  openSaleSearch(){
+    this.navCtrl.push(SaleSearchComponent, {record : this.recordVO});
+  }
 
   openSaleScreen(){
-    this.navCtrl.push(SaleFormComponent, {record : this.record});
+    this.navCtrl.push(SaleFormComponent, {record : this.recordVO});
+  }
+
+  openPaymentScreen(){
+    this.navCtrl.push(PaymentFormComponent, {record : this.recordVO});
   }
   
   update(){
-    this.service.update(this.record).subscribe(
+    this.service.update(this.recordForm).subscribe(
       response => {
         this.messageUtil.showSuccessfullMessage();
 
         //Updating the Costumer name
-        this.costumerName = `${this.record.costumer.name} ${this.record.costumer.lastName}`;
+        this.costumerName = `${this.recordForm.costumer.name} ${this.recordForm.costumer.lastName}`;
       },
       error => {
-        
-        console.log(error)
-
         let message = ''
         if(error.message == 409){
           message = 'Um cliente com este nome já existe'
@@ -55,6 +69,11 @@ export class RecordDetailComponent {
         this.messageUtil.showErrorMessage(message)
       }
     )
+  }
+
+  initializeScreenObjects(){
+    this.recordVO = new RecordVO();
+    this.recordForm = new RecordForm();
   }
 
 }

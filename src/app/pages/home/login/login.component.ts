@@ -1,21 +1,20 @@
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
-import { UserVO } from "../../../vo/UserVO";
 import { HomeComponent } from "../home.component";
 import { Auth } from "../../../core/auth.service";
-
+import { LoginForm } from "../../../form/LoginForm";
 
 @Component({
     selector: 'page-login',
     templateUrl: 'login.html'
 })
 export class LoginComponent {
-    user : UserVO;
+    user : LoginForm;
 
     constructor(public navCtrl: NavController, public authService : Auth ) {}
 
     ngOnInit(){
-        this.user = new UserVO();
+        this.user = new LoginForm();
         this.user.login = 'minguini';
         this.user.password = 'teste';
     }

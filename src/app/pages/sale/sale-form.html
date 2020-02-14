@@ -24,7 +24,7 @@
         
         <ion-item>
             <ion-label fixed><b>Preço R$</b></ion-label>
-            <ion-input [brmasker]="{money: true}" [(ngModel)]="productValue"></ion-input>
+            <ion-input  type="text" [brmasker]="{money: true, decimal:0}" [(ngModel)]="productValue"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -42,7 +42,7 @@
             </ion-col>
 
             <ion-col col-2>
-                <button [disabled]="(!productDescription || !productValue || !amount)" 
+                <button 
                 large clear ion-button color="secondary" icon-only (click)="addProduct()">
                     <ion-icon name="add-circle"></ion-icon>
                 </button>

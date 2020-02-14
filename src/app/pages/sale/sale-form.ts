@@ -3,8 +3,8 @@ import { MessagesUtil } from "../../util/message.util";
 import { SaleService } from "../../services/sale.service";
 import { Component, ViewChild } from "@angular/core";
 import { RecordVO } from "../../vo/RecordVO";
-import { SaleVO } from "../../vo/SaleVO";
-import { ProductVO } from "../../vo/ProductVO";
+import { SaleForm } from "../../form/SaleForm";
+import { ProductForm } from "../../form/ProductForm";
 
 @Component({
   selector: 'sale-pages',
@@ -14,13 +14,12 @@ import { ProductVO } from "../../vo/ProductVO";
 export class SaleFormComponent {
 
   record : RecordVO;
-  sale : SaleVO;
+  sale : SaleForm;
 
   productDescription : string;
   productValue : string;
 
   amount : number;
-
   total : number;
 
   @ViewChild("productDescriptionInput") productDescriptionInput;
@@ -31,29 +30,41 @@ export class SaleFormComponent {
               public messageUtil :  MessagesUtil) {
 
                 this.total = 0.0;
-              }
+  }
 
   ngOnInit(){
     this.record = this.navigationParameters.get('record');
-    this.sale = new SaleVO();
+    this.sale = new SaleForm(this.record);
+
     this.amount = 1;
-    
   }
 
   addProduct(){
-    debugger;
-    let product : ProductVO = new ProductVO();
+    let product : ProductForm = new ProductForm();
 
     product.amount = this.amount;
     product.description = this.productDescription;
+    product.unit_value = parseFloat(this.productValue);
     product.total_value = (parseFloat(this.productValue) * this.amount);
 
-  
     this.sale.products.push(product);
     this.total += product.total_value;
 
-
     this.resetForm();
+  }
+
+  save(){
+    this.service.save(this.sale).subscribe(
+      response => {
+        this.messageUtil.showSuccessfullMessage(`Venda no valor de R$${response.total} finalizada`);
+        this.navCtrl.getPrevious().data.record = response.record;
+        
+        this.navCtrl.pop();
+      },
+      error => {
+        this.messageUtil.showErrorMessage();
+      }
+    )
   }
 
   removeProduct(index){
@@ -68,18 +79,6 @@ export class SaleFormComponent {
     this.productDescription = '';
     this.productValue = '';
     this.productDescriptionInput.setFocus();
-  }
-  save(){
-
-    /*this.service.save().subscribe(
-      response => {
-        this.messageUtil.showSuccessfullMessage();
-      },
-      error => {
-        this.messageUtil.showErrorMessage();
-      }
-    )*/
-
   }
 
 }

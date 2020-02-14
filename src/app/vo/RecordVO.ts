@@ -1,14 +1,10 @@
-import { Costumer } from '../vo/CostumerVO';
+import { CostumerVO } from '../vo/CostumerVO';
 
 export class RecordVO {
 
   id : number;
   
-  name : string;
-  lastName : string;
-  extraInformation : string;
-
-  costumer : Costumer;
+  costumer : CostumerVO;
   total : number;
   creation_date : Date;
  
@@ -18,14 +14,7 @@ export class RecordVO {
 
   constructor(){
     this.total = 0.0
-    this.costumer = new Costumer();
+    this.costumer = new CostumerVO();
   }
 
-  areRequiredFieldsFullfiled(){
-    if(!this.costumer.lastName || !this.costumer.name) {
-      return false;
-    }else{
-      return true;
-    }
-  }
 }

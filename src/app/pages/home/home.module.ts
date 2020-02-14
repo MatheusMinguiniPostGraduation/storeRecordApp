@@ -32,6 +32,4 @@ import { HttpClientModule } from '@angular/common/http';
         HomeService
     ]
 })
-export class HomeModule{
-
-}
+export class HomeModule{}

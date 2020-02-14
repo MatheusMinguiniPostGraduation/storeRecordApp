@@ -1,22 +1,18 @@
-import { ProductVO } from "./ProductVO";
 import { RecordVO } from "./RecordVO";
 
-export class SaleVO {
+export class PaymentVO {
 
     id : number;
-
+    userName : string;
     record : RecordVO;
-
-    date : string;
-
-    hour: string;
-
+    date : Date;
+    interest : number;
+    value : number;
     total : number;
-  
-    products : Array<ProductVO>;
+    cancelled : boolean;
   
     constructor(record: RecordVO){
-        this.products = [];
         this.record = record
+        this.interest = 0.0
     }
 }
