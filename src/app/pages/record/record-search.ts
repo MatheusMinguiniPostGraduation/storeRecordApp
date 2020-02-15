@@ -32,9 +32,7 @@ export class RecordSearchComponent {
     this.service.search(this.name).subscribe(
       response  => {
         this.records = response;
-        if(response.length == 0){
-          this.noRecordsFound = true
-        }
+        this.noRecordsFound = (response.length == 0)
       },
       error => {
         console.log('Erro')

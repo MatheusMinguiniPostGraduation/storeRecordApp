@@ -29,7 +29,6 @@ export class RecordDetailComponent {
   }
 
   ionViewWillEnter(){
-    debugger;
     this.recordVO =  this.navigationParameters.get('record');
 
     //Converting value object to be possibly updated later on

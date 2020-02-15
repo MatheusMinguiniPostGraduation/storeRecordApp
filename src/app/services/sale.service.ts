@@ -14,7 +14,7 @@ export class SaleService {
 
     constructor ( private http: HttpClient, private restUtil : RestUtil) {}
 
-    save(sale : SaleForm): Observable<any> {
+    save(sale : SaleForm) : Observable<any> {
         return this.http.post<any>(`${this.restUtil.getDNS()}/sales`, sale, httpOptions)
             .pipe(
                 catchError(error => {
@@ -22,4 +22,15 @@ export class SaleService {
                 })
        )
     };
+
+    costumSearch(uri : string) : Observable<any> {
+        const fullUri = `${this.restUtil.getDNS()}/${uri}`
+        
+        return this.http.get<any>(fullUri, httpOptions)
+        .pipe(
+            catchError(error => {
+                throw new Error(error);
+            })
+   )
+    }
 }
