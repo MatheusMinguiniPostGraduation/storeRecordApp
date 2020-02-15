@@ -7,6 +7,7 @@ import { IonicModule } from 'ionic-angular';
 import { PaymentFormComponent } from './payment-form';
 import { PaymentService } from '../../services/payment.service';
 import { BrMaskerModule } from 'brmasker-ionic-3';
+import { PaymentSearchComponent } from './payment-search';
 
 @NgModule({
     imports: [
@@ -17,13 +18,16 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
         BrMaskerModule
     ],
     declarations : [
-      PaymentFormComponent
+      PaymentFormComponent,
+      PaymentSearchComponent
     ],
     exports : [
-        PaymentFormComponent
+        PaymentFormComponent,
+        PaymentSearchComponent
     ],
     entryComponents: [
-        PaymentFormComponent
+        PaymentFormComponent,
+        PaymentSearchComponent
     ],
     providers : [
         PaymentService

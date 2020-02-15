@@ -36,7 +36,7 @@
     </button>
    
 
-    <button [disabled]="( (!payment.value || payment.value == 0) && !payment.date )"
+    <button [disabled]="!informedValue || informedValue == 0"
      ion-button color="secondary" (click)="save()" full>
         Finalizar
     </button>

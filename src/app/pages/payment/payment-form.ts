@@ -31,8 +31,13 @@ export class PaymentFormComponent {
 
     save(){
         this.payment.value = parseFloat(this.informedValue);
-        this.payment.date = new Date(this.informedDate);
-
+        
+        // Gotta do this in order to add one more day in the typed date,
+        // Somehow, I am not sure why, the constructor ends up subtracting one day from the given string date
+        if(this.informedDate){
+          this.payment.date = this.formatDate();
+        }
+        
         this.service.save(this.payment).subscribe(
           response => {
             this.messageUtil.showSuccessfullMessage(`Valor de R$${response.total} recebido`);
@@ -44,7 +49,15 @@ export class PaymentFormComponent {
             this.messageUtil.showErrorMessage();
           }
         )
-      }
+    }
+
+
+    private formatDate() : Date{
+      let parsedDate = new Date(this.informedDate);
+      parsedDate.setDate(parsedDate.getDate() + 1)
+
+      return  parsedDate;
+    }
 }
   
     

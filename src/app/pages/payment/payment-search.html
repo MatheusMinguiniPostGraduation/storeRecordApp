@@ -1,0 +1,102 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Buscar Pagamentos 
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+    
+<ion-content padding>
+
+    <ion-card>
+        <ion-card-content>
+            <ion-card-header>
+                <ion-card-title>
+                    {{ record.costumer.name }} {{ record.costumer.lastName }}
+                </ion-card-title>
+            </ion-card-header>
+        
+            <ion-grid>
+
+                <ion-row>
+                    <ion-col col-12>
+                        <h4 style = "color: #ec6302;font-weight: bold;">Data do pagamento</h4>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-label><b>De:</b></ion-label>
+                        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="from_date" ></ion-datetime>
+                    </ion-col>
+
+                    <ion-col col-6>
+                        <ion-label><b>Até:</b></ion-label>
+                        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="to_date" ></ion-datetime>
+                    </ion-col>
+
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-12>
+                        <h4 style = "color: #ec6302;font-weight: bold;">Valor do pagamento</h4>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <!-- <ion-input [brmasker]="{money: true}" [(ngModel)]="sale_min_value"></ion-input>-->
+                    <ion-col col-4>
+                        <ion-label><b>De:</b></ion-label>
+                        <ion-input type="text" [(ngModel)]="payment_min_value"></ion-input>
+                    </ion-col>
+
+                    <!--  <ion-input [brmasker]="{money: true}" [(ngModel)]="sale_max_value"></ion-input>-->
+                    <ion-col col-4>
+                        <ion-label><b>Até:</b></ion-label>
+                       <ion-input type="text" [(ngModel)]="payment_max_value"></ion-input>
+                    </ion-col>
+                </ion-row>
+                
+            </ion-grid>
+
+            <button ion-button large color="default-blue" full icon-end (click)="search()">
+                Buscar
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-card-content>
+    </ion-card>
+
+    <h5> Número de pagamentos encontrados: {{payments.length}} </h5>
+
+    <div *ngIf="noPaymentsFound == true">
+        <img src="../../assets/imgs/norecord.png">
+    </div>
+
+    <div *ngIf="noPaymentsFound == false">
+        <ion-grid *ngFor="let payment of payments; let i = index">
+            <ion-row>
+                <ion-card>
+                    <ion-card-content>
+
+                        <ion-row (click)="openDetailPage(sale)">
+                            <ion-col col-6>
+                               <p><b>Data:</b> {{payment.date}}</p>
+                            </ion-col>
+
+                            <ion-col col-6>
+                                <p><b>Recebido por:</b> {{payment.userName}}</p>
+                             </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-badge color="primary" item-end> {{payment.total | currency:'BRL':true}} </ion-badge>
+                            </ion-col>
+                        </ion-row>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

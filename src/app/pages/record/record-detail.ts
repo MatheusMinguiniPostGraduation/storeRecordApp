@@ -7,6 +7,7 @@ import { SaleFormComponent } from '../sale/sale-form';
 import { SaleSearchComponent } from '../sale/sale-search';
 import { PaymentFormComponent } from '../payment/payment-form';
 import { RecordForm } from '../../form/RecordForm';
+import { PaymentSearchComponent } from '../payment/payment-search';
 
 @Component({
   templateUrl: 'record-detail.html'
@@ -38,9 +39,13 @@ export class RecordDetailComponent {
     // the name changes due to two-way-data-binding
     this.costumerName = `${this.recordVO.costumer.name} ${this.recordVO.costumer.lastName}`;
   }
-
+  
   openSaleSearch(){
     this.navCtrl.push(SaleSearchComponent, {record : this.recordVO});
+  }
+
+  openPaymentSearch(){
+    this.navCtrl.push(PaymentSearchComponent, {record : this.recordVO});
   }
 
   openSaleScreen(){

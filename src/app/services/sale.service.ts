@@ -31,6 +31,6 @@ export class SaleService {
             catchError(error => {
                 throw new Error(error);
             })
-   )
+        )
     }
 }
