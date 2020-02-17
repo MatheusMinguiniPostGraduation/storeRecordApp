@@ -46,8 +46,7 @@ export class SaleDetailComponent {
     async presentAlert() {
         const alert = await this.alertController.create({
             title: 'Tem certeza?',
-            message: 'A venda <b>NÃO</b> poderá ser recuperada. O valor será subtraído da ficha e os respectivos produtos excluídos. Por favor, ' + 
-            'pense bem antes de continuar a operação.',
+            message: 'A venda <b>NÃO</b> poderá ser recuperada. O valor será subtraído da ficha e os respectivos produtos excluídos. Deseja continuar?',
             inputs: [
                 {
                     type: 'radio',

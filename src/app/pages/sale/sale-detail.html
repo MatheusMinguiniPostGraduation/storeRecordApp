@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            Buscar Vendas 
+            Detalhes da venda
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -47,15 +47,19 @@
 
         <div *ngSwitchCase="'products'">
             <ion-list *ngFor="let product of sale.products; let i = index">
-                <ion-list-header>
-                    {{product.description}}
-                </ion-list-header>
-
-                <ion-item>
-                    <p><b>Valor unitário:</b> {{ product.unit_value | currency:'BRL':true }}</p>
-                    <p><b>Quantidade:</b> {{product.amount}}</p>
-                    <p><b>Total: </b> {{ product.total_value | currency:'BRL':true }}</p>
-                </ion-item>
+                <ion-card>
+                    <ion-card-content>
+                        <ion-card-header>
+                            <ion-card-title>
+                             {{ product.description }} 
+                            </ion-card-title>
+                        </ion-card-header>
+    
+                        <p><b>Valor unitário:</b> {{ product.unit_value | currency:'BRL':true }}</p>
+                        <p><b>Quantidade:</b> {{product.amount}}</p>
+                        <p><b>Total: </b> {{ product.total_value | currency:'BRL':true }}</p>
+                    </ion-card-content>
+                </ion-card> 
             </ion-list>
         </div>
         
