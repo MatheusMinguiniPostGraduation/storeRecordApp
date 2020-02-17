@@ -30,7 +30,8 @@
     "sw-toolbox": "3.6.0",
      "zone.js": "0.8.18",
     "jwt-decode" : "",
-    "brmasker-ionic-3" :  "1.6.3 "
+    "brmasker-ionic-3" :  "1.6.3 ",
+    "moment" : "2.24.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.0",

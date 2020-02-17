@@ -15,6 +15,7 @@ export class PaymentSearchComponent {
   payments :  Array<PaymentVO> ;
 
   //Filter screen
+  isToApplyFilter : boolean;
   from_date : string;
   to_date : string;
   payment_min_value : number;
@@ -33,12 +34,12 @@ export class PaymentSearchComponent {
     this.record = this.navigationParameters.get('record');
     this.payments = [];
     this.noPaymentsFound = false;
+    this.search();
   }
 
   search(){
     this.service.costumSearch(this.buildSearchURL()).subscribe(
       response => {
-        debugger;
         this.noPaymentsFound = (response.length == 0);
         this.payments = response;
 
@@ -70,6 +71,14 @@ export class PaymentSearchComponent {
                     .build()
 
     return uri;
+  }
+
+  showFormFilter(){
+    if(this.isToApplyFilter){
+      this.isToApplyFilter = false;
+    }else{
+      this.isToApplyFilter = true;
+    }
   }
 
 }

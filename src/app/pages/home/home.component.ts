@@ -10,8 +10,8 @@ import { RecordVO } from '../../vo/RecordVO';
 export class HomeComponent {
 
   public userName : String;
-  public recordsTotalValue : number = 0.0;
-  public paymentsTotalValue : number = 0.0;
+  public recordsTotalValue : number;
+  public paymentsTotalValue : number;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -19,7 +19,11 @@ export class HomeComponent {
     this.userName = JSON.parse(localStorage.getItem('userName'));
   }
 
-  ngOnInit(){
+  ionViewWillEnter(){
+    this.recordsTotalValue = 0.0;
+
+    this.paymentsTotalValue = 0.0;
+
     this.homeService.getRecords().subscribe(
       response => {
         

@@ -16,6 +16,7 @@ export class SaleSearchComponent {
   sales :  Array<SaleVO> ;
 
   //Filter screen
+  isToApplyFilter : boolean;
   from_date : string;
   to_date : string;
   sale_min_value : number;
@@ -34,6 +35,17 @@ export class SaleSearchComponent {
     this.record = this.navigationParameters.get('record');
     this.sales = [];
     this.noSalesFound = false;
+    this.isToApplyFilter = false;
+
+    this.search();
+  }
+
+  showFormFilter(){
+    if(this.isToApplyFilter){
+      this.isToApplyFilter = false;
+    }else{
+      this.isToApplyFilter = true;
+    }
   }
 
   search(){

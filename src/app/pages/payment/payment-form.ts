@@ -4,6 +4,7 @@ import { NavController, NavParams } from "ionic-angular";
 import { MessagesUtil } from "../../util/message.util";
 import { PaymentService } from "../../services/payment.service";
 import { PaymentForm } from "../../form/PaymentForm";
+import * as moment from 'moment'; 
 
 
 @Component({
@@ -25,32 +26,67 @@ export class PaymentFormComponent {
                 public messageUtil :  MessagesUtil) {}
 
     ngOnInit(){
-        this.record = this.navigationParameters.get('record');
-        this.payment = new PaymentForm(this.record);
+      this.record = this.navigationParameters.get('record');
+      this.payment = new PaymentForm(this.record);
     }
 
     save(){
-        this.payment.value = parseFloat(this.informedValue);
-        
-        // Gotta do this in order to add one more day in the typed date,
-        // Somehow, I am not sure why, the constructor ends up subtracting one day from the given string date
-        if(this.informedDate){
-          this.payment.date = this.formatDate();
-        }
-        
-        this.service.save(this.payment).subscribe(
-          response => {
-            this.messageUtil.showSuccessfullMessage(`Valor de R$${response.total} recebido`);
-            this.navCtrl.getPrevious().data.record = response.record;
-            
-            this.navCtrl.pop();
-          },
-          error => {
-            this.messageUtil.showErrorMessage();
-          }
-        )
+      try{
+        this.sendPaymentData();
+      }catch(message){
+        this.messageUtil.showErrorMessage(message);
+      }
     }
 
+    sendPaymentData(){
+
+      this.payment.value = parseFloat(this.informedValue);
+
+      if(this.informedDate){
+        this.payment.date = this.formatDate();
+      }
+
+      if(this.isRequiredFieldsNotFullfilled()) throw `Valor e forma de pagamento são obrigatórios`
+      
+      if(this.isInformedDateFromFuture())  throw `A data de pagamento não pode ser futura`
+         
+    
+      if(this.isInformedValueGreaterThanRecordDebt()) throw `O valor deve ser menor que ${this.record.total}`
+          
+      // Gotta do this in order to add one more day in the typed date,
+      // Somehow, I am not sure why, the constructor ends up subtracting one day from the given string date 
+      this.service.save(this.payment).subscribe(
+        response => {
+          this.messageUtil.showSuccessfullMessage(`Valor de R$${response.value} recebido`);
+          this.navCtrl.getPrevious().data.record = response.record;
+          
+          this.navCtrl.pop();
+        },
+        error => {
+          let message = '';
+          if(error.message == 400){
+            message = 'O pagamento não pode ser maior do que o total na ficha';
+          }
+          this.messageUtil.showErrorMessage(message);
+        }
+      )
+    }
+
+    isInformedDateFromFuture() : boolean{
+      const paymentDate = this.payment.date.toISOString().split('T')[0];
+      const now = new Date().toISOString().split('T')[0]
+      let isGreaterThanToday = moment(paymentDate).isAfter(now);
+
+      return isGreaterThanToday;
+    }
+
+    isRequiredFieldsNotFullfilled() : boolean{
+      return (!this.informedValue || this.informedValue == '0,00' || !this.payment.paymentMethod);
+    }
+
+    isInformedValueGreaterThanRecordDebt() : boolean{
+      return this.record.total <= this.payment.value;
+    }
 
     private formatDate() : Date{
       let parsedDate = new Date(this.informedDate);

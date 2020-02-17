@@ -8,7 +8,7 @@
     
 <ion-content padding>
 
-    <ion-card>
+    <ion-card *ngIf="isToApplyFilter == true">
         <ion-card-content>
             <ion-card-header>
                 <ion-card-title>
@@ -66,6 +66,8 @@
         </ion-card-content>
     </ion-card>
 
+    <h5 style="color:brown"> Total atual na ficha: {{record.total | currency:'BRL':true}} </h5>
+    <br>
     <h5> Número de pagamentos encontrados: {{payments.length}} </h5>
 
     <div *ngIf="noPaymentsFound == true">
@@ -89,8 +91,11 @@
                         </ion-row>
 
                         <ion-row>
-                            <ion-col>
-                                <ion-badge color="primary" item-end> {{payment.total | currency:'BRL':true}} </ion-badge>
+                            <ion-col col-4>
+                                <ion-badge color="primary" item-end> {{payment.value | currency:'BRL':true}} </ion-badge>
+                            </ion-col>
+                            <ion-col col-8>
+                                <p><b>Método:</b> {{payment.paymentMethod}} </p> 
                             </ion-col>
                         </ion-row>
 
@@ -99,4 +104,11 @@
             </ion-row>
         </ion-grid>
     </div>
+
+    <ion-fab right bottom>
+        <button ion-fab color="default-blue" (click)="showFormFilter()">
+            <ion-icon ios="ios-search" md="md-search"></ion-icon>
+        </button>
+    </ion-fab>
+
 </ion-content>
