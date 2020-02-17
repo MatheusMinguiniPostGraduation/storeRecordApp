@@ -8,6 +8,7 @@ import { SaleFormComponent } from './sale-form';
 import { SaleSearchComponent } from './sale-search';
 
 import { BrMaskerModule } from 'brmasker-ionic-3';
+import { SaleDetailComponent } from './sale-detail';
 
 @NgModule({
     imports: [
@@ -19,15 +20,18 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
     ],
     declarations : [
         SaleFormComponent,
-        SaleSearchComponent
+        SaleSearchComponent,
+        SaleDetailComponent
     ],
     exports : [
         SaleFormComponent,
-        SaleSearchComponent
+        SaleSearchComponent,
+        SaleDetailComponent
     ],
     entryComponents: [
         SaleFormComponent, 
-        SaleSearchComponent
+        SaleSearchComponent,
+        SaleDetailComponent
     ],
     providers : [
         SaleService

@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Buscar Vendas 
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+    <div padding>
+        <ion-segment [(ngModel)]="options">
+            <ion-segment-button value="general">
+             Geral
+            </ion-segment-button>
+            <ion-segment-button value="products">
+             Produtos
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+            
+    <div [ngSwitch]="options">
+        <div *ngSwitchCase="'general'">
+            <ion-card>
+                <ion-card-content>
+                    <ion-card-header>
+                        <ion-card-title>
+                            Total: {{ sale.total | currency:'BRL':true }} 
+                        </ion-card-title>
+                    </ion-card-header>
+
+                    <p><b>Cliente:</b> {{ sale.record.costumer.name }} {{ sale.record.costumer.lastName }}</p>
+                    <p><b>Horário:</b> {{sale.time}}</p>
+                    <p><b>Data:</b> {{sale.date}}</p>
+                    <p><b>Vendido por:</b> {{sale.userName}}</p>
+                </ion-card-content>
+            </ion-card>
+                        
+            <ion-card>
+                <ion-card-content>
+                    <p>Quer cancelar essa venda?</p>
+                    <a style="color: brown" (click)="deletesale(sale.id)">Sim, quero</a>
+                </ion-card-content>
+            </ion-card>
+        </div>
+
+        <div *ngSwitchCase="'products'">
+            <ion-list *ngFor="let product of sale.products; let i = index">
+                <ion-list-header>
+                    {{product.description}}
+                </ion-list-header>
+
+                <ion-item>
+                    <p><b>Valor unitário:</b> {{ product.unit_value | currency:'BRL':true }}</p>
+                    <p><b>Quantidade:</b> {{product.amount}}</p>
+                    <p><b>Total: </b> {{ product.total_value | currency:'BRL':true }}</p>
+                </ion-item>
+            </ion-list>
+        </div>
+        
+    </div>
+
+   
+</ion-content>
+

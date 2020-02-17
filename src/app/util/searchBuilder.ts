@@ -4,7 +4,7 @@ export class SearchBuilder{
     private id : number;
 
     constructor(resourcePath : string, id : number){
-       this.baseURI = `${resourcePath}/${id}`
+       this.baseURI = `${resourcePath}/record/${id}`
        this.id = id;
     }
 

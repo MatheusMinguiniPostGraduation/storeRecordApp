@@ -5,6 +5,7 @@ import { SaleService } from "../../services/sale.service";
 import { Component } from "@angular/core";
 import { SearchBuilder } from "../../util/searchBuilder";
 import { MessagesUtil } from "../../util/message.util";
+import { SaleDetailComponent } from "./sale-detail";
 
 @Component({
     selector: 'sale-pages',
@@ -48,14 +49,15 @@ export class SaleSearchComponent {
     }
   }
 
+  openDetailPage(id : number){
+    this.navCtrl.push(SaleDetailComponent, {id : id});
+  }
+
   search(){
     this.service.costumSearch(this.buildSearchURL()).subscribe(
       response => {
-        
         this.noSalesFound = (response.length == 0);
         this.sales = response;
-
-        debugger;
       },
       error => {
         this.messageUtil.showErrorMessage();

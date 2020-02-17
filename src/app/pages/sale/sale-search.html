@@ -77,10 +77,10 @@
     <div *ngIf="noSalesFound == false">
         <ion-grid *ngFor="let sale of sales; let i = index">
             <ion-row>
-                <ion-card>
+                <ion-card (click)="openDetailPage(sale.id)">
                     <ion-card-content>
 
-                        <ion-row (click)="openDetailPage(sale)">
+                        <ion-row>
                             <ion-col col-6>
                                <p><b>Data:</b> {{sale.date}}</p>
                             </ion-col>

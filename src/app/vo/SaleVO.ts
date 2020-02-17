@@ -1,5 +1,6 @@
 import { ProductVO } from "./ProductVO";
 import { RecordVO } from "./RecordVO";
+import { CostumerVO } from "./CostumerVO";
 
 export class SaleVO {
 
@@ -12,11 +13,20 @@ export class SaleVO {
     hour: string;
 
     total : number;
+
+    userName: string;
   
     products : Array<ProductVO>;
   
     constructor(record: RecordVO){
         this.products = [];
-        this.record = record
+        
+        if(record == null){
+            this.record = new RecordVO();
+        }else{
+            this.record = record
+        }
+        
+        this.record.costumer = new CostumerVO();
     }
 }
