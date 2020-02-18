@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams, AlertController } from "ionic-angular";
+import { NavController, NavParams, AlertController, App } from "ionic-angular";
 import { SaleService } from "../../services/sale.service";
 import { MessagesUtil } from "../../util/message.util";
 import { SaleVO } from "../../vo/SaleVO";
+import { RecordDetailComponent } from "../record/record-detail";
 
 @Component({
     templateUrl: 'sale-detail.html',
@@ -17,6 +18,7 @@ export class SaleDetailComponent {
         public navigationParameters: NavParams, 
         public service : SaleService,
         public alertController : AlertController,
+        private app: App,
         public messageUtil :  MessagesUtil) {
 
         this.sale = new SaleVO(null);
@@ -40,10 +42,19 @@ export class SaleDetailComponent {
     }
 
     deletesale(id: number){
-        this.presentAlert();
+        this.service.deleteSale(id).subscribe(
+            response => {
+                debugger;
+                this.messageUtil.showSuccessfullMessage();
+                this.app.getRootNav().setRoot(RecordDetailComponent, {record: response});
+            },
+            error => {
+                this.messageUtil.showErrorMessage();
+            }
+        )
     }
 
-    async presentAlert() {
+    async presentConfirmationAlert(id : number) {
         const alert = await this.alertController.create({
             title: 'Tem certeza?',
             message: 'A venda <b>NÃO</b> poderá ser recuperada. O valor será subtraído da ficha e os respectivos produtos excluídos. Deseja continuar?',
@@ -65,7 +76,7 @@ export class SaleDetailComponent {
                         text: 'Concluir',
                         handler: (data : string) => {
                             if(data == 'yes'){
-                                console.log("Realmente quer excluir");
+                                this.deletesale(id);
                         }
                     }
                 }]

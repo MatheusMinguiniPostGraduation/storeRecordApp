@@ -23,6 +23,15 @@ export class SaleService {
        )
     };
 
+    deleteSale(id : number) : Observable<any>{
+        return this.http.delete<any>(`${this.restUtil.getDNS()}/sales/${id}`, httpOptions)
+        .pipe(
+            catchError(error => {
+                throw new Error(error);
+            })
+        )
+    };
+
     getSaleById(id : number){
         return this.http.get<any>(`${this.restUtil.getDNS()}/sales/${id}`, httpOptions)
             .pipe(
