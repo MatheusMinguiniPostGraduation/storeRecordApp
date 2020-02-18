@@ -66,8 +66,14 @@
         </ion-card-content>
     </ion-card>
 
-    <h5 style="color:brown"> Total atual na ficha: {{record.total | currency:'BRL':true}} </h5>
-    <br>
+    <div *ngIf="0 > record.total"> 
+        <h6 ion-text color="secondary"> Crédito de: {{(record.total * -1)  | currency:'BRL':true}}</h6>
+    </div>
+
+    <div *ngIf="record.total >= 0">
+        <h6 ion-text color="danger"> Devendo: {{record.total  | currency:'BRL':true}}</h6>
+    </div>
+    
     <h5> Número de pagamentos encontrados: {{payments.length}} </h5>
 
     <div *ngIf="noPaymentsFound == true">

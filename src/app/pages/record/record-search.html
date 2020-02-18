@@ -38,8 +38,9 @@
                             <ion-col>
                                 {{record.costumer.name}} {{record.costumer.lastName}}
                             </ion-col>
-                            <ion-col>
-                                <ion-badge color="danger" item-end>{{record.total | currency:'BRL':true}}</ion-badge>
+                            <ion-col >
+                                <ion-badge *ngIf="record.total >= 0" color="danger" item-end>{{record.total  | currency:'BRL':true}}</ion-badge>
+                                <ion-badge  *ngIf="record.total < 0" color="secondary" item-end>{{(record.total * -1)  | currency:'BRL':true}}</ion-badge>
                             </ion-col>
                         </ion-row>
                     </ion-card-content>

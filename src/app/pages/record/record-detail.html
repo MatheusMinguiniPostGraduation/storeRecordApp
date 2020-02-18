@@ -18,7 +18,15 @@
                 {{costumerName}}
 
                 <ion-card-title>
-                    <ion-badge color="danger" item-end>Valor na ficha: {{recordVO.total | currency:'BRL':true}}</ion-badge>
+                    <div *ngIf="0 > recordVO.total"> 
+                        <p ion-text color="secondary"> Crédito de:</p>
+                        <ion-badge  color="secondary" item-end>{{(recordVO.total * -1)  | currency:'BRL':true}}</ion-badge>
+                    </div>
+
+                    <div *ngIf="recordVO.total >= 0">
+                        <p ion-text color="danger"> Dívida de:</p>
+                        <ion-badge  color="danger" item-end>{{recordVO.total  | currency:'BRL':true}}</ion-badge>
+                    </div>
                 </ion-card-title>
             
             </ion-card-header>
