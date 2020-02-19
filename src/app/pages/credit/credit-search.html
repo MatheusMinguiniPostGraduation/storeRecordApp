@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Histórico de créditos
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+    <p> Número de créditos encontrados: {{credits.length}} </p>
+
+    <div *ngIf="noCreditsFound == true">
+        <img src="../../assets/imgs/norecord.png">
+    </div>
+
+    <div *ngIf="noCreditsFound == false">
+        <ion-grid *ngFor="let credit of credits; let i = index">
+            <ion-row>
+                <ion-card>
+                    <ion-card-content>
+                        <ion-row>
+                            <ion-col>
+                                <p ion-text *ngIf="credit.sale.removed">
+                                    Crédito no valor de {{credit.value | currency:'BRL':true}} na data {{credit.date}} às {{credit.hour}} 
+                                    <b>derivado da exclusão da venda</b> {{credit.sale.id}} 
+                                </p>
+                                <br><a style="color: brown" (click)="openSaleDetailPage(credit.sale.id)">Ver detalhes da venda</a>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+</ion-content> 

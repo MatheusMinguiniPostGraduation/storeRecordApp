@@ -17,6 +17,12 @@ export class SaleVO {
     userName: string;
   
     products : Array<ProductVO>;
+
+
+    //Removed fields
+    removalDate : string
+    removalHour : string
+    userNameRemoval : string
   
     constructor(record: RecordVO){
         this.products = [];

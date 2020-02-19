@@ -8,6 +8,7 @@ import { SaleSearchComponent } from '../sale/sale-search';
 import { PaymentFormComponent } from '../payment/payment-form';
 import { RecordForm } from '../../form/RecordForm';
 import { PaymentSearchComponent } from '../payment/payment-search';
+import { CreditSearchComponent } from '../credit/credit-search';
 
 @Component({
   templateUrl: 'record-detail.html'
@@ -54,6 +55,10 @@ export class RecordDetailComponent {
 
   openPaymentScreen(){
     this.navCtrl.push(PaymentFormComponent, {record : this.recordVO});
+  }
+
+  openHistoryCreditScreen(){
+    this.navCtrl.push(CreditSearchComponent, {record : this.recordVO});
   }
   
   update(){

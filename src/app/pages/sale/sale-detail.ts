@@ -33,6 +33,7 @@ export class SaleDetailComponent {
     getSaleById(id : number){
         this.service.getSaleById(id).subscribe(
             response => {
+                console.log(response);
                this.sale = response;
             },
             error => {
@@ -44,7 +45,6 @@ export class SaleDetailComponent {
     deletesale(id: number){
         this.service.deleteSale(id).subscribe(
             response => {
-                debugger;
                 this.messageUtil.showSuccessfullMessage();
                 this.app.getRootNav().setRoot(RecordDetailComponent, {record: response});
             },

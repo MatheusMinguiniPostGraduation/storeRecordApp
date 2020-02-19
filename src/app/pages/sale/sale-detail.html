@@ -37,10 +37,27 @@
                 </ion-card-content>
             </ion-card>
                         
-            <ion-card>
+           
+            <!-- -->
+            <ion-card *ngIf="sale.removed == false">
                 <ion-card-content>
                     <p>Quer cancelar essa venda?</p>
                     <a style="color: brown" (click)="presentConfirmationAlert(sale.id)">Sim, quero</a>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card *ngIf="sale.removed == true">
+
+                <ion-card-header>
+                    <ion-card-title color="danger">
+                            Venda excluída!
+                    </ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <p><b>Data da exclusão: {{sale.removalDate}}</b> </p>
+                    <p><b>Horário da exclusão: {{sale.removalHour}}</b></p>
+                    <p><b>Excluído por: {{sale.userNameRemoval}}</b> </p>
                 </ion-card-content>
             </ion-card>
         </div>

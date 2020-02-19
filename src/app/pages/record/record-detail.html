@@ -19,13 +19,11 @@
 
                 <ion-card-title>
                     <div *ngIf="0 > recordVO.total"> 
-                        <p ion-text color="secondary"> Crédito de:</p>
-                        <ion-badge  color="secondary" item-end>{{(recordVO.total * -1)  | currency:'BRL':true}}</ion-badge>
+                        <ion-badge  color="secondary" item-end> Crédito de: {{(recordVO.total * -1)  | currency:'BRL':true}}</ion-badge>
                     </div>
 
                     <div *ngIf="recordVO.total >= 0">
-                        <p ion-text color="danger"> Dívida de:</p>
-                        <ion-badge  color="danger" item-end>{{recordVO.total  | currency:'BRL':true}}</ion-badge>
+                        <ion-badge  color="danger" item-end> Dívida de: {{recordVO.total  | currency:'BRL':true}}</ion-badge>
                     </div>
                 </ion-card-title>
             
@@ -60,18 +58,33 @@
             </ion-grid>
 
         </ion-card-content>
-    </ion-card>
+    </ion-card><br>
 
     <ion-card>
+        <ion-card-header>
+            Outras informações
+        </ion-card-header>
+        
+        <ion-list>
+            <button ion-item>
+            <ion-icon name="close-circle" item-start></ion-icon>
+            Vendas canceladas
+            </button>
+        
+            <button ion-item (click)="openHistoryCreditScreen()">
+                <ion-icon name="logo-usd" item-start ></ion-icon>
+                Histórico de crédito
+            </button>
+        </ion-list>  
+    </ion-card><br>
 
+    <ion-card>
         <ion-card-content>
             <ion-card-header>
-                <ion-card-title color="defau">
-                    Dados atuais:
-                </ion-card-title>
+                Dados atuais
             </ion-card-header>
 
-            <ion-grid>
+            <ion-list>
                 <ion-item>
                     <ion-input placeholder="Nome" type="text" [(ngModel)]="recordForm.costumer.name"></ion-input>
                 </ion-item>
@@ -83,7 +96,7 @@
                 <ion-item>
                     <ion-textarea placeholder="Informações adicionais" [(ngModel)]="recordForm.costumer.extraInformation"></ion-textarea>
                 </ion-item>
-            </ion-grid>
+            </ion-list>
 
             <button [disabled]="(!recordForm.costumer.name || !recordForm.costumer.lastName)" ion-button large color="default-blue" full icon-end (click)="update()">
                 Atualizar 

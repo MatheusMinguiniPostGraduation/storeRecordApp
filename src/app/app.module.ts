@@ -25,6 +25,7 @@ import { MessagesUtil } from './util/message.util';
 import { RestUtil } from './util/environmet.util';
 import { SaleModule } from './pages/sale/sale.module';
 import { PaymentModule } from './pages/payment/payment.module';
+import { CreditModule } from './pages/credit/credit.module';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -37,7 +38,8 @@ registerLocaleData(ptBr)
     RecordModule,
     SaleModule,
     PaymentModule,
-
+    CreditModule,
+    
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

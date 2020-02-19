@@ -74,7 +74,7 @@
         <h6 ion-text color="danger"> Devendo: {{record.total  | currency:'BRL':true}}</h6>
     </div>
     
-    <h5> Número de pagamentos encontrados: {{payments.length}} </h5>
+    <p> Número de pagamentos encontrados: {{payments.length}} </p>
 
     <div *ngIf="noPaymentsFound == true">
         <img src="../../assets/imgs/norecord.png">
