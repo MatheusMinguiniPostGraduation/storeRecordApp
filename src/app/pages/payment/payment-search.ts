@@ -1,10 +1,11 @@
 import { RecordVO } from "../../vo/RecordVO";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, AlertController, App } from "ionic-angular";
 import { Component } from "@angular/core";
 import { SearchBuilder } from "../../util/searchBuilder";
 import { PaymentVO } from "../../vo/PaymentVO";
 import { PaymentService } from "../../services/payment.service";
 import { MessagesUtil } from "../../util/message.util";
+import { RecordDetailComponent } from "../record/record-detail";
 
 @Component({
     templateUrl: 'payment-search.html'
@@ -27,7 +28,9 @@ export class PaymentSearchComponent {
   constructor(public navCtrl : NavController, 
               public navigationParameters: NavParams, 
               public service : PaymentService,
-              public messageUtil : MessagesUtil) {
+              public alertController : AlertController,
+              public messageUtil : MessagesUtil,
+              private app: App) {
   }
 
   ngOnInit(){
@@ -80,5 +83,48 @@ export class PaymentSearchComponent {
       this.isToApplyFilter = true;
     }
   }
+
+  deletePayment(id: number){
+    this.service.deletePayment(id).subscribe(
+        response => {
+            this.messageUtil.showSuccessfullMessage();
+            this.app.getRootNav().setRoot(RecordDetailComponent, {record: response});
+        },
+        error => {
+            this.messageUtil.showErrorMessage();
+        }
+    )
+}
+
+  async presentConfirmationAlert(id : number) {
+    const alert = await this.alertController.create({
+        title: 'Tem certeza?',
+        message: `O pagamento <b>NÃO</b> poderá ser recuperado. O valor será acrescido na ficha. Deseja continuar?`,
+        inputs: [
+            {
+                type: 'radio',
+                label: 'Não',
+                value: 'no',
+                checked: true
+            },
+
+            {
+                type: 'radio',
+                label: 'Sim',
+                value: 'yes'
+            }],
+            buttons: [
+                {
+                    text: 'Concluir',
+                    handler: (data : string) => {
+                        if(data == 'yes'){
+                            this.deletePayment(id);
+                    }
+                }
+            }]
+    });
+
+    await alert.present();
+}
 
 }

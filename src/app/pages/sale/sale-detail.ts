@@ -42,7 +42,7 @@ export class SaleDetailComponent {
         )
     }
 
-    deletesale(id: number){
+    deleteSale(id: number){
         this.service.deleteSale(id).subscribe(
             response => {
                 this.messageUtil.showSuccessfullMessage();
@@ -76,7 +76,7 @@ export class SaleDetailComponent {
                         text: 'Concluir',
                         handler: (data : string) => {
                             if(data == 'yes'){
-                                this.deletesale(id);
+                                this.deleteSale(id);
                         }
                     }
                 }]

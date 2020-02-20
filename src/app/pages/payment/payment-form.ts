@@ -85,7 +85,7 @@ export class PaymentFormComponent {
     }
 
     isInformedValueGreaterThanRecordDebt() : boolean{
-      return this.record.total <= this.payment.value;
+      return this.record.total < this.payment.value;
     }
 
     private formatDate() : Date{

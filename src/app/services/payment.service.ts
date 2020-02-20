@@ -24,6 +24,15 @@ export class PaymentService {
        )
     };
 
+    deletePayment(id : number) : Observable<any>{
+        return this.http.delete<any>(`${this.restUtil.getDNS()}/payments/${id}`, httpOptions)
+        .pipe(
+            catchError(error => {
+                throw new Error(error);
+            })
+        )
+    };
+
     costumSearch(uri : string) : Observable<any> {
         const fullUri = `${this.restUtil.getDNS()}/${uri}`
         
