@@ -15,6 +15,7 @@ export class RecordForm {
         this.costumer = new CostumerForm;
         this.costumer.name = vo.costumer.name;
         this.costumer.lastName = vo.costumer.lastName;
+        this.costumer.extraInformation = vo.costumer.extraInformation;
     }
 
 }
