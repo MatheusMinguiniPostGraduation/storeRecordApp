@@ -7,31 +7,63 @@
 </ion-header>
 
 <ion-content padding>
-    
-    <p> Número de créditos encontrados: {{credits.length}} </p>
-
-    <div *ngIf="noCreditsFound == true">
-        <img src="../../assets/imgs/norecord.png">
+    <div padding>
+        <ion-segment [(ngModel)]="options">
+            <ion-segment-button value="given_credits">
+                Recebidos
+            </ion-segment-button>
+            <ion-segment-button value="used_credits">
+                Usados
+            </ion-segment-button>
+        </ion-segment>
     </div>
+  
+    <div [ngSwitch]="options">
 
-    <div *ngIf="noCreditsFound == false">
-        <ion-grid *ngFor="let credit of credits; let i = index">
-            <ion-row>
-                <ion-card>
-                    <ion-card-content>
-                        <ion-row>
-                            <ion-col>
-                                <p ion-text *ngIf="credit.sale.removed">
-                                    Crédito no valor de {{credit.value | currency:'BRL':true}} na data {{credit.date}} às {{credit.hour}} 
-                                    <b>derivado da exclusão da venda</b> {{credit.sale.id}} 
-                                </p>
-                                <br><a style="color: brown" (click)="openSaleDetailPage(credit.sale.id)">Ver detalhes da venda</a>
-                            </ion-col>
-                        </ion-row>
-                    </ion-card-content>
-                </ion-card>
-            </ion-row>
-        </ion-grid>
+        <div *ngSwitchCase="'given_credits'">
+            
+            <p> Número de créditos encontrados: {{givenCredits.length}} </p>
+
+            <ion-grid *ngFor="let credit of givenCredits; let i = index">
+                <ion-row>
+                    <ion-card>
+                        <ion-card-content>
+                            <ion-row>
+                                <ion-col>
+                                    <p ion-text>
+                                        Crédito <b>RECEBIDO</b> no valor de {{credit.value | currency:'BRL':true}} na data {{credit.date}} às {{credit.hour}} 
+                                        <b>derivado da exclusão na venda de valor {{credit.sale.total | currency:'BRL':true}} </b> 
+                                    </p>
+                                    <br><a style="color: brown" (click)="openSaleDetailPage(credit.sale.id)">Ver detalhes da venda</a>
+                                </ion-col>
+                            </ion-row>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div *ngSwitchCase="'used_credits'">
+
+            <p> Número de créditos encontrados: {{usedCredits.length}} </p>
+
+            <ion-grid *ngFor="let credit of usedCredits; let i = index">
+                <ion-row>
+                    <ion-card>
+                        <ion-card-content>
+                            <ion-row>
+                                <ion-col>
+                                    <p ion-text>
+                                        Crédito <b>USADO</b> no valor de {{credit.value | currency:'BRL':true}} na data {{credit.date}} às {{credit.hour}} 
+                                        <b>na venda de valor {{credit.sale.total | currency:'BRL':true}}</b> 
+                                    </p>
+                                    <br><a style="color: brown" (click)="openSaleDetailPage(credit.sale.id)">Ver detalhes da venda</a>
+                                </ion-col>
+                            </ion-row>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-row>
+            </ion-grid>
+        </div>
     </div>
-
 </ion-content> 

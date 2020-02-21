@@ -8,9 +8,7 @@ export class CreditVO {
     date : string;
     hour : string;
     value : number;
+    type : string;
   
-  
-    constructor(){
-        
-    }
+    constructor(){}
 }

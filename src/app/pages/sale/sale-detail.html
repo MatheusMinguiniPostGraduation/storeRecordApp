@@ -12,10 +12,10 @@
     <div padding>
         <ion-segment [(ngModel)]="options">
             <ion-segment-button value="general">
-             Geral
+                Geral
             </ion-segment-button>
             <ion-segment-button value="products">
-             Produtos
+                Produtos
             </ion-segment-button>
         </ion-segment>
     </div>
@@ -37,8 +37,6 @@
                 </ion-card-content>
             </ion-card>
                         
-           
-            <!-- -->
             <ion-card *ngIf="sale.removed == false">
                 <ion-card-content>
                     <p>Quer cancelar essa venda?</p>
@@ -64,24 +62,43 @@
 
         <div *ngSwitchCase="'products'">
             <ion-list *ngFor="let product of sale.products; let i = index">
-                <ion-card>
-                    <ion-card-content>
+
+                <ion-card class="returned-product">
+                    <ion-card-content >
                         <ion-card-header>
                             <ion-card-title>
-                             {{ product.description }} 
+                                {{ product.description }}
                             </ion-card-title>
                         </ion-card-header>
     
                         <p><b>Valor unitário:</b> {{ product.unit_value | currency:'BRL':true }}</p>
                         <p><b>Quantidade:</b> {{product.amount}}</p>
                         <p><b>Total: </b> {{ product.total_value | currency:'BRL':true }}</p>
+
+                        <br>
+
+                        <div *ngIf="product.returned == true; else notReturned">
+                            <ion-badge color="danger" end>Devolvido</ion-badge>
+                        </div>
+                            
+                        <ng-template #notReturned>
+                            <ion-buttons end>
+                                <button ion-button small color="default-blue" round (click)="askHowManyUnits(product, i)">
+                                    Devolver 
+                                </button>
+                            </ion-buttons>
+                        </ng-template>
+
+                        
                     </ion-card-content>
                 </ion-card> 
+                
             </ion-list>
         </div>
         
     </div>
 
-   
+    
 </ion-content>
-
+    
+    

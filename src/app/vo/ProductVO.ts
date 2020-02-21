@@ -1,4 +1,3 @@
-
 export class ProductVO {
 
     id : number;
@@ -10,6 +9,8 @@ export class ProductVO {
     total_value: number;
 
     amount: number;
+
+    returned : boolean;
     
     constructor(){
         this.unit_value = 0.0;
