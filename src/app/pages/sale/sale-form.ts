@@ -40,17 +40,44 @@ export class SaleFormComponent {
   }
 
   addProduct(){
-    let product : ProductForm = new ProductForm();
+    try{
+      this.checkFields();
 
-    product.amount = this.amount;
-    product.description = this.productDescription;
-    product.unit_value = parseFloat(this.productValue);
-    product.total_value = (parseFloat(this.productValue) * this.amount);
+      let product : ProductForm = new ProductForm();
 
-    this.sale.products.push(product);
-    this.total += product.total_value;
+      product.amount = this.amount;
+      product.description = this.productDescription;
+      product.unit_value = parseFloat(this.productValue);
+      product.total_value = (parseFloat(this.productValue) * this.amount);
+  
+      this.sale.products.push(product);
+      this.total += product.total_value;
+  
+      this.resetForm();
 
-    this.resetForm();
+    }catch(error){
+      this.messageUtil.showErrorMessage(error);
+    }
+  }
+
+  checkFields(){
+
+    let typedValue = parseFloat(this.productValue);
+    
+    if(!typedValue || typedValue <= 0 || typedValue > 2000 ){
+      throw `O valor precisa ser MAIOR que R$0,00 ou MENOR que R$ 2.000`;
+    }
+
+    let isInteger = Number.isInteger(this.amount * 1)
+
+    if(this.amount <= 0 || this.amount > 10 || !isInteger){
+      throw `A quantidade precisa ser entre 1 e 10 e não pode ser fracionária`
+    }
+
+    if(!this.productDescription){
+      throw `Digite uma descrição para o produto`
+    }
+    
   }
 
   save(){

@@ -11,6 +11,8 @@
     </ion-header>
     
     <ion-content padding>
+
+            <input currencyMask type="tel" [(ngModel)]="productValue" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
                  
     <ion-title>
         <ion-badge color="dark" item-end>Vendendo para: {{record.costumer.name}} {{record.costumer.lastName}}</ion-badge>
@@ -24,12 +26,12 @@
         
         <ion-item>
             <ion-label fixed><b>Preço R$</b></ion-label>
-            <ion-input  type="text" [brmasker]="{money: true, decimal:0}" [(ngModel)]="productValue"></ion-input>
+            <!-- <ion-input  type="text" [brmasker]="{money: true, decimal:0}" [(ngModel)]="productValue"></ion-input> -->
         </ion-item>
 
         <ion-item>
             <ion-label fixed><b>Quantidade</b></ion-label>
-            <ion-input type="number" min="1" max="10" [(ngModel)]="amount"></ion-input>
+            <ion-input type="tel" [(ngModel)]="amount"></ion-input>
         </ion-item>
     </ion-grid>
 
