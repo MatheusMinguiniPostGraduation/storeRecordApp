@@ -4,6 +4,7 @@ import { AuthContextService } from "./authentication.service";
 import { Injectable } from "@angular/core";
 import { tap, catchError } from "rxjs/operators";
 import { LoginForm } from "../form/LoginForm";
+import { RestUtil } from "../util/environmet.util";
 
 
 const httpOptions = {
@@ -13,11 +14,11 @@ const httpOptions = {
 @Injectable()
 export class Auth {
 
-    constructor ( private http: HttpClient, private authContext: AuthContextService) {}
+    constructor ( private http: HttpClient, private authContext: AuthContextService, private restUtil : RestUtil) {}
 
     login(data : LoginForm): Observable<any> {
 
-        return this.http.post<any>(`http://127.0.0.1:8080/login`, data, httpOptions)
+        return this.http.post<any>(`${this.restUtil.getDNS()}/login`, data, httpOptions)
             .pipe(
                 tap(async (response : any) => {
                     await this.authContext.setToken(response.token)
