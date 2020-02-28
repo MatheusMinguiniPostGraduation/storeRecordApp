@@ -34,7 +34,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     this.count++;
 
     if (this.count === 1) {
-      this.presentLoading();
+      //this.presentLoading();
     }
 
     return next.handle(req)

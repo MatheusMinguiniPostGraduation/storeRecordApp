@@ -19,7 +19,7 @@
     <ion-grid>
         <ion-item>
             <ion-label fixed><b>Valor R$</b></ion-label>
-            <ion-input type="tel" [brmasker]="{money: true, decimal:0}" [(ngModel)]="informedValue"></ion-input>
+            <ion-input type="tel" [brmasker]="{money: true, thousand: '',  decimalCaracter: '.', decimal: '2'}" [(ngModel)]="informedValue"></ion-input>
         </ion-item>
 
         <ion-item>

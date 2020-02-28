@@ -47,13 +47,13 @@
                     <!-- <ion-input [brmasker]="{money: true}" [(ngModel)]="sale_min_value"></ion-input>-->
                     <ion-col col-4>
                         <ion-label><b>De:</b></ion-label>
-                        <ion-input type="text" [(ngModel)]="sale_min_value"></ion-input>
+                        <ion-input type="tel" [brmasker]="{money: true, thousand: '',  decimalCaracter: '.', decimal: '2'}" [(ngModel)]="sale_min_value"></ion-input>
                     </ion-col>
 
                     <!--  <ion-input [brmasker]="{money: true}" [(ngModel)]="sale_max_value"></ion-input>-->
                     <ion-col col-4>
                         <ion-label><b>Até:</b></ion-label>
-                       <ion-input type="text" [(ngModel)]="sale_max_value"></ion-input>
+                       <ion-input type="tel" [brmasker]="{money: true, thousand: '',  decimalCaracter: '.', decimal: '2'}" [(ngModel)]="sale_max_value"></ion-input>
                     </ion-col>
                 </ion-row>
                 

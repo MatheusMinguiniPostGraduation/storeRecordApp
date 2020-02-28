@@ -77,19 +77,12 @@
 
                         <br>
 
-                        <div *ngIf="product.returned == true; else notReturned">
-                            <ion-badge color="danger" end>Devolvido</ion-badge>
-                        </div>
-                            
-                        <ng-template #notReturned>
-                            <ion-buttons end>
-                                <button ion-button small color="default-blue" round (click)="askHowManyUnits(product, i)">
-                                    Devolver 
-                                </button>
-                            </ion-buttons>
-                        </ng-template>
-
-                        
+                        <ion-buttons end>
+                            <button ion-button small color="default-blue" round (click)="askHowManyUnits(product, i)">
+                                Devolver 
+                            </button>
+                        </ion-buttons>
+                       
                     </ion-card-content>
                 </ion-card> 
                 

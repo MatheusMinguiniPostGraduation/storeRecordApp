@@ -10,16 +10,13 @@ import { SaleSearchComponent } from './sale-search';
 import { BrMaskerModule } from 'brmasker-ionic-3';
 import { SaleDetailComponent } from './sale-detail';
 
-import { NgxCurrencyModule } from "ngx-currency";
-
 @NgModule({
     imports: [
         IonicModule,
         CommonModule,
         HttpClientModule,
         FormsModule, 
-        BrMaskerModule,
-        NgxCurrencyModule
+        BrMaskerModule
     ],
     declarations : [
         SaleFormComponent,

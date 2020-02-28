@@ -44,72 +44,6 @@ export class SaleDetailComponent {
         )
     }
 
-    returnProduct(product : ProductVO, amount, index : number){
-
-
-        let itemFound;
-        this.sale.products.forEach(saleProduct => {
-            if(saleProduct.id == product.id && saleProduct.returned){
-                itemFound = saleProduct;
-            }
-        })
-
-        if(itemFound != null && itemFound != undefined){
-            itemFound.amount = itemFound.amount + amount;
-            itemFound.total_value = product.amount * product.unit_value;
-            product.amount = product.amount - amount;
-            product.total_value = product.amount * product.unit_value; 
-        }else{
-            let returnedProduct = Object.assign({}, product);
-            returnedProduct.amount = amount;
-            returnedProduct.total_value = amount * product.unit_value
-            returnedProduct.returned = true;
-    
-            product.amount = product.amount - amount;
-            product.total_value = product.amount * product.unit_value; 
-            this.sale.products.push(returnedProduct);
-        }
-
-       
-        if(product.amount == 0){
-            this.sale.products.splice(index, 1);
-        } 
-        
-    }
-
-    async askHowManyUnits(product : ProductVO, index:number){
-        const alert = await this.alertController.create({
-            title: `Quantas peças deseja devolver? No máximo ${product.amount}`,
-            
-            inputs: [
-                {
-                    type: 'number',
-                    label: 'Quantidade',
-                    value: '1',
-                    checked: true
-                }],
-                buttons: [
-                    {
-                        text: 'Ok',
-                        handler: (data ) => {
-                           
-                            if(data[0]){
-                                let amount = parseInt(data[0]);
-
-                                if(amount <= product.amount){
-                                    this.returnProduct(product, amount, index);
-                                }else{
-                                    this.messageUtil.showErrorMessage(`A quantidade devolvida não pode ser maior do que ${product.amount}`)
-                                }
-                            }
-                        }
-                    }
-                ]
-        });
-    
-        await alert.present();
-    }
-
     deleteSale(id: number){
         this.service.deleteSale(id).subscribe(
             response => {
@@ -152,6 +86,5 @@ export class SaleDetailComponent {
     
         await alert.present();
     }
-
 }
   

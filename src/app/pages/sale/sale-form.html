@@ -11,9 +11,6 @@
     </ion-header>
     
     <ion-content padding>
-
-            <input currencyMask type="tel" [(ngModel)]="productValue" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
-                 
     <ion-title>
         <ion-badge color="dark" item-end>Vendendo para: {{record.costumer.name}} {{record.costumer.lastName}}</ion-badge>
     </ion-title>
@@ -26,7 +23,7 @@
         
         <ion-item>
             <ion-label fixed><b>Preço R$</b></ion-label>
-            <!-- <ion-input  type="text" [brmasker]="{money: true, decimal:0}" [(ngModel)]="productValue"></ion-input> -->
+            <ion-input type="tel" [brmasker]="{money: true, thousand: '',  decimalCaracter: '.', decimal: '2'}" [(ngModel)]="productValue"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -66,11 +63,11 @@
                 <p>{{product.amount}} un.</p>
             </ion-col>
 
-            <ion-col col-3>
+            <ion-col col-4>
                 <p>{{product.total_value | currency:'BRL':true}}</p>
             </ion-col>
 
-            <ion-col col-2>
+            <ion-col col-1>
                 <button clear ion-button color="danger" icon-only (click)="removeProduct(i)" end>
                     <ion-icon name="trash"></ion-icon>
                 </button>
