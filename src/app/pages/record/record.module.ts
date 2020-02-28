@@ -8,13 +8,15 @@ import { RecordSearchComponent } from './record-search';
 import { IonicModule } from 'ionic-angular';
 import { MenuComponent } from '../menu/menu.component';
 import { RecordService } from '../../services/record.service';
+import { BrMaskerModule } from 'brmasker-ionic-3';
 
 @NgModule({
     imports: [
         IonicModule,
         CommonModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        BrMaskerModule
     ],
     declarations : [
         RecordDetailComponent,
