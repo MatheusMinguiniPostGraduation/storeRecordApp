@@ -16,10 +16,13 @@ export class RecordSearchComponent {
   noRecordsFound: boolean;
 
   constructor(private navCtrl: NavController, private service: RecordService ) {
-
+    this.records = [];
   }
 
-  ngOnInit(){
+  // There is the need to enrase the search in case the user looks up a record, clicks on its detail, 
+  // changing some information afterwards and then
+  // comes back to search screen. The search would be still displayed with the datas from the past
+  ionViewWillEnter(){
     this.records = [];
     this.noRecordsFound = false;
   }

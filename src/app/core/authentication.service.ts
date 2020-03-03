@@ -30,6 +30,7 @@ export class AuthContextService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('userName');
   }
 
   private getDecodedAccessToken(token: string): any {

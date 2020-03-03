@@ -108,4 +108,12 @@ export class SaleFormComponent {
     this.productDescriptionInput.setFocus();
   }
 
+
+  increaseAmount(){
+    this.amount++;
+  }
+
+  decreaseAmount(){
+    this.amount--;
+  }
 }

@@ -7,11 +7,23 @@
         <ion-item>
             <ion-input placeholder="Login" type="text" [(ngModel)]="user.login"></ion-input>
         </ion-item>
-        
+
+       
+
         <ion-item>
-            <ion-input placeholder="Senha" type="password" [(ngModel)]="user.password"></ion-input>
+            <ion-input [type]="isActive ? 'text' : 'password'" 
+            placeholder="Senha" [(ngModel)]="user.password"></ion-input>
+
+            <ion-icon (click)="isActive = !isActive" [name]="isActive ? 'eye' : 'eye-off'" item-right></ion-icon>
+        </ion-item>
+
+        <ion-item>
+            <p ion-text><b> Para habilitar o botão, preencha os campos </b></p>
         </ion-item>
     </ion-list>
 
-    <button ion-button color="login-button" full (click)="login()"> Log in </button>
+    
+
+    <button [disabled]="!user.login || !user.password" ion-button color="secondary"
+    ion-button color="login-button" class="button-login" full (click)="login()">Entrar</button>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController, App } from "ionic-angular";
 import { HomeComponent } from "../home.component";
 import { Auth } from "../../../core/auth.service";
 import { LoginForm } from "../../../form/LoginForm";
@@ -11,7 +11,9 @@ import { LoginForm } from "../../../form/LoginForm";
 export class LoginComponent {
     user : LoginForm;
 
-    constructor(public navCtrl: NavController, public authService : Auth ) {}
+    constructor(public navCtrl: NavController, 
+        public authService : Auth, 
+        private app : App) {}
 
     ngOnInit(){
         this.user = new LoginForm();
@@ -20,7 +22,7 @@ export class LoginComponent {
     login(){
         this.authService.login(this.user).subscribe(
             response => {
-                this.navCtrl.push(HomeComponent);
+                this.app.getRootNav().setRoot(HomeComponent)
             },
             error => {
                 console.log('Erro')

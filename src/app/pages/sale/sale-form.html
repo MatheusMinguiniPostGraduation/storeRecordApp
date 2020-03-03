@@ -12,7 +12,7 @@
     
     <ion-content padding>
     <ion-title>
-        <ion-badge color="dark" item-end>Vendendo para: {{record.costumer.name}} {{record.costumer.lastName}}</ion-badge>
+        <ion-badge color="dark" item-end> {{record.costumer.name}} {{record.costumer.lastName}}</ion-badge>
     </ion-title>
         
     <ion-grid>
@@ -27,8 +27,18 @@
         </ion-item>
 
         <ion-item>
-            <ion-label fixed><b>Quantidade</b></ion-label>
-            <ion-input type="tel" [(ngModel)]="amount"></ion-input>
+            <ion-label fixed><b>Quantidades</b></ion-label>
+            <ion-input type="tel" [(ngModel)]="amount" disabled="true"></ion-input>
+
+
+            <button *ngIf="amount > 1" ion-button icon-only (click)="decreaseAmount()" color="dark" item-right clear>
+                <ion-icon ios="ios-arrow-down" md="md-arrow-down"></ion-icon>
+            </button>
+
+            <button ion-button icon-only (click)="increaseAmount()" color="dark" item-right clear>
+                <ion-icon ios="ios-arrow-up" md="md-arrow-up"></ion-icon>
+            </button>
+
         </ion-item>
     </ion-grid>
 
@@ -42,7 +52,7 @@
 
             <ion-col col-2>
                 <button 
-                large clear ion-button color="secondary" icon-only (click)="addProduct()">
+                    large clear ion-button color="secondary" icon-only (click)="addProduct()">
                     <ion-icon name="add-circle"></ion-icon>
                 </button>
             </ion-col>
