@@ -57,7 +57,7 @@ export class PaymentFormComponent {
       // Somehow, I am not sure why, the constructor ends up subtracting one day from the given string date 
       this.service.save(this.payment).subscribe(
         response => {
-          this.messageUtil.showSuccessfullMessage(`Valor de R$${response.value} recebido`);
+          this.messageUtil.showSuccessfullMessage(`Valor de R$${parseFloat(response.value).toFixed(2)} recebido`);
           this.navCtrl.getPrevious().data.record = response.record;
           
           this.navCtrl.pop();

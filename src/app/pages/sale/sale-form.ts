@@ -85,7 +85,7 @@ export class SaleFormComponent {
   save(){
     this.service.save(this.sale).subscribe(
       response => {
-        this.messageUtil.showSuccessfullMessage(`Venda no valor de R$${response.total} finalizada`);
+        this.messageUtil.showSuccessfullMessage(`Venda no valor de R$${parseFloat(response.total).toFixed(2)} finalizada`);
         this.navCtrl.getPrevious().data.record = response.record;
         
         this.navCtrl.pop();
