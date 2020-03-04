@@ -73,11 +73,7 @@ export class PaymentFormComponent {
     }
 
     isInformedDateFromFuture() : boolean{
-      const paymentDate = this.payment.date.toISOString().split('T')[0];
-      const now = new Date().toISOString().split('T')[0]
-      let isGreaterThanToday = moment(paymentDate).isAfter(now);
-
-      return isGreaterThanToday;
+      return moment(this.payment.date).isAfter(new Date(), 'day');
     }
 
     isRequiredFieldsNotFullfilled() : boolean{
