@@ -110,7 +110,9 @@ export class SaleFormComponent {
 
 
   increaseAmount(){
-    this.amount++;
+    if(this.amount < 10){
+      this.amount++;
+    }
   }
 
   decreaseAmount(){
