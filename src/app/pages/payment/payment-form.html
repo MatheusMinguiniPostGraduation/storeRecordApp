@@ -13,7 +13,7 @@
     <ion-content padding>
                  
     <ion-title>
-        <ion-badge color="dark" item-end>Recebendo de: {{record.costumer.name}} {{record.costumer.lastName}}</ion-badge>
+        <ion-badge color="dark" item-end>{{record.costumer.name}} {{record.costumer.lastName}}</ion-badge>
     </ion-title>
         
     <ion-grid>
@@ -37,7 +37,7 @@
     <ion-list radio-group [(ngModel)]="payment.paymentMethod">
         <ion-item>
           <ion-label>Dinheiro</ion-label>
-          <ion-radio value="dinheiro" checked></ion-radio>
+          <ion-radio value="Dinheiro" checked></ion-radio>
         </ion-item>
 
         <ion-item>
