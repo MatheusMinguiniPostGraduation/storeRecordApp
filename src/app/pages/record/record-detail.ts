@@ -9,6 +9,7 @@ import { PaymentFormComponent } from '../payment/payment-form';
 import { RecordForm } from '../../form/RecordForm';
 import { PaymentSearchComponent } from '../payment/payment-search';
 import { CreditSearchComponent } from '../credit/credit-search';
+import { ValidationUtil } from '../../util/validation.util';
 
 @Component({
   templateUrl: 'record-detail.html'
@@ -21,10 +22,11 @@ export class RecordDetailComponent {
 
   costumerName : string;
 
-  constructor(public navCtrl: NavController, 
-              public navigationParameters: NavParams, 
-              public service : RecordService,
-              public messageUtil :  MessagesUtil) {
+  constructor(private navCtrl: NavController, 
+              private navigationParameters: NavParams, 
+              private service : RecordService,
+              private messageUtil :  MessagesUtil,
+              private validationUtil : ValidationUtil) {
 
     this.initializeScreenObjects();
    
@@ -60,8 +62,17 @@ export class RecordDetailComponent {
   openHistoryCreditScreen(){
     this.navCtrl.push(CreditSearchComponent, {record : this.recordVO});
   }
-  
+
   update(){
+    try{
+      this.checkFields();
+      this.sendInformation();
+    }catch(error){
+      this.messageUtil.showErrorMessage(error);
+    }
+  }
+
+  sendInformation(){
     this.service.update(this.recordForm).subscribe(
       response => {
         this.messageUtil.showSuccessfullMessage();
@@ -83,6 +94,15 @@ export class RecordDetailComponent {
   initializeScreenObjects(){
     this.recordVO = new RecordVO();
     this.recordForm = new RecordForm();
+  }
+
+  checkFields(){
+    const cpf =  this.recordForm.costumer.cpf
+    if(cpf){
+      if(!this.validationUtil.isCpfValid(cpf)){
+        throw 'O CPF informado é inválido';
+      }
+    }
   }
 
 }

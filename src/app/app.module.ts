@@ -26,6 +26,7 @@ import { RestUtil } from './util/environmet.util';
 import { SaleModule } from './pages/sale/sale.module';
 import { PaymentModule } from './pages/payment/payment.module';
 import { CreditModule } from './pages/credit/credit.module';
+import { ValidationUtil } from './util/validation.util';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -55,7 +56,8 @@ registerLocaleData(ptBr)
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'pt-PT'},
     MessagesUtil,
-    RestUtil
+    RestUtil,
+    ValidationUtil
   ]
 })
 export class AppModule {}
