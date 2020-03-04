@@ -5,6 +5,7 @@ import { Component, ViewChild } from "@angular/core";
 import { RecordVO } from "../../vo/RecordVO";
 import { SaleForm } from "../../form/SaleForm";
 import { ProductForm } from "../../form/ProductForm";
+import { ValidationUtil } from "../../util/validation.util";
 
 @Component({
   selector: 'sale-pages',
@@ -24,10 +25,11 @@ export class SaleFormComponent {
 
   @ViewChild("productDescriptionInput") productDescriptionInput;
 
-  constructor(public navCtrl : NavController, 
-              public navigationParameters: NavParams, 
-              public service : SaleService,
-              public messageUtil :  MessagesUtil) {
+  constructor(private navCtrl : NavController, 
+              private navigationParameters: NavParams, 
+              private service : SaleService,
+              private messageUtil :  MessagesUtil,
+              private validationUtil : ValidationUtil) {
 
                 this.total = 0.0;
   }
@@ -74,7 +76,7 @@ export class SaleFormComponent {
       throw `A quantidade precisa ser entre 1 e 10 e não pode ser fracionária`
     }
 
-    if(!this.productDescription){
+    if(!this.productDescription || this.validationUtil.strContainsOnlyBlankSpaces(this.productDescription)){
       throw `Digite uma descrição para o produto`
     }
     

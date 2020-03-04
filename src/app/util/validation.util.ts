@@ -41,4 +41,13 @@ export class ValidationUtil{
         
         return true;
     }
+
+    public strContainsOnlyBlankSpaces(str){
+        if (!str.replace(/\s/g, '').length) {
+            return true;
+        }
+
+        return false;
+    }
+    
 }
