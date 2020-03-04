@@ -14,7 +14,10 @@
             <ion-input [type]="isActive ? 'text' : 'password'" 
             placeholder="Senha" [(ngModel)]="user.password"></ion-input>
 
-            <ion-icon (click)="isActive = !isActive" [name]="isActive ? 'eye' : 'eye-off'" item-right></ion-icon>
+            <button clear ion-button icon-only color="dark" (click)="isActive = !isActive" item-right>
+                <ion-icon  [name]="isActive ? 'eye' : 'eye-off'"></ion-icon>
+            </button>
+
         </ion-item>
 
         <ion-item>
