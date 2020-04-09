@@ -10,6 +10,8 @@ import { SaleSearchComponent } from './sale-search';
 import { BrMaskerModule } from 'brmasker-ionic-3';
 import { SaleDetailComponent } from './sale-detail';
 
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 @NgModule({
     imports: [
         IonicModule,
@@ -34,7 +36,8 @@ import { SaleDetailComponent } from './sale-detail';
         SaleDetailComponent
     ],
     providers : [
-        SaleService
+        SaleService,
+        SocialSharing
     ]
 })
 export class SaleModule{}

@@ -6,6 +6,7 @@ import { Component } from "@angular/core";
 import { SearchBuilder } from "../../util/searchBuilder";
 import { MessagesUtil } from "../../util/message.util";
 import { SaleDetailComponent } from "./sale-detail";
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
     selector: 'sale-pages',
@@ -29,7 +30,8 @@ export class SaleSearchComponent {
   constructor(public navCtrl : NavController, 
               public navigationParameters: NavParams, 
               public service : SaleService,
-              public messageUtil : MessagesUtil) {
+              public messageUtil : MessagesUtil,
+              private socialSharing: SocialSharing) {
   }
 
   ngOnInit(){
@@ -85,6 +87,51 @@ export class SaleSearchComponent {
                     .build()
 
     return uri;
+  }
+
+  shareDebt(){
+    this.shareDebtWhenThereIsPhoneNumber();
+  }
+
+
+  shareDebtWhenWithNoPhoneNumberAttached(){
+     //this.socialSharing.shareViaWhatsApp(message).then(() => {
+  }
+
+  shareDebtWhenThereIsPhoneNumber(){
+    var message = `Olá, ${this.record.costumer.name}! Tudo bem? 
+      \nPrimeiramente, gostaríamos de agradecer pela compra em nossa loja.
+      \nAbaixo você pode conferir o total da sua ficha bem como os detalhes da sua última compra conosco! 
+      \nQualquer dúvida estamos à disposição! Beeijos
+      \n*Valor total da ficha:* R$ ${this.record.total}
+      \n\n*Última compra*
+      Data: ${this.sales[this.sales.length - 1].date}
+      Vendido por: ${this.sales[this.sales.length - 1].userName}
+      \n_Produtos:_\n`
+
+      let productListMessage = '';
+
+      this.sales[this.sales.length - 1].products.forEach(product => {
+        productListMessage = productListMessage + 
+                                  `\nDescrição: ${product.description}.
+                                   \nValor unitário: R$ ${product.unit_value}
+                                   \nQuantidade: ${product.amount}
+                                   \nValor total: R$ ${product.total_value}
+                                   \n---------------------------- `  
+      });
+
+      message = message + productListMessage;
+     
+
+
+
+    this.messageUtil.showSuccessfullMessage(message)
+
+    this.socialSharing.shareViaWhatsAppToReceiver('+5516997167535', message).then(() => {
+      this.messageUtil.showSuccessfullMessage()
+    }).catch(() => {
+      this.messageUtil.showErrorMessage()
+    });
   }
 
 }
