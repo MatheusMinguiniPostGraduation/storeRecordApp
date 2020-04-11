@@ -4,6 +4,7 @@ export class CostumerVO {
     name : string;
     lastName : string;
     cpf : string;
+    cellphone : string;
     extraInformation: string;
 
     constructor(){}

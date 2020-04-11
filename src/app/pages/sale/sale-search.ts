@@ -90,48 +90,48 @@ export class SaleSearchComponent {
   }
 
   shareDebt(){
-    this.shareDebtWhenThereIsPhoneNumber();
-  }
 
+    this.messageUtil.createCostumerDebtMessage(this.record)
 
-  shareDebtWhenWithNoPhoneNumberAttached(){
-     //this.socialSharing.shareViaWhatsApp(message).then(() => {
-  }
-
-  shareDebtWhenThereIsPhoneNumber(){
-    var message = `Olá, ${this.record.costumer.name}! Tudo bem? 
-      \nPrimeiramente, gostaríamos de agradecer pela compra em nossa loja.
-      \nAbaixo você pode conferir o total da sua ficha bem como os detalhes da sua última compra conosco! 
-      \nQualquer dúvida estamos à disposição! Beeijos
-      \n*Valor total da ficha:* R$ ${this.record.total}
-      \n\n*Última compra*
-      Data: ${this.sales[this.sales.length - 1].date}
-      Vendido por: ${this.sales[this.sales.length - 1].userName}
-      \n_Produtos:_\n`
-
-      let productListMessage = '';
-
-      this.sales[this.sales.length - 1].products.forEach(product => {
-        productListMessage = productListMessage + 
-                                  `\nDescrição: ${product.description}.
-                                   \nValor unitário: R$ ${product.unit_value}
-                                   \nQuantidade: ${product.amount}
-                                   \nValor total: R$ ${product.total_value}
-                                   \n---------------------------- `  
-      });
-
-      message = message + productListMessage;
+    if(this.sales.length > 0){
+      this.messageUtil = this.messageUtil.withSaleMessage(this.sales)
+            .withProduct(this.sales[this.sales.length - 1].products);
+    }
      
+    let message = this.messageUtil.getCostumerDebtMessage();
 
+    if(this.record.costumer.cellphone){
+      this.shareDebtWhenThereIsPhoneNumber(message);
+    }else{
+      this.shareDebtWhenWithNoPhoneNumberAttached(message);
+    }
+   
+  }
 
-
-    this.messageUtil.showSuccessfullMessage(message)
-
-    this.socialSharing.shareViaWhatsAppToReceiver('+5516997167535', message).then(() => {
+  shareDebtWhenWithNoPhoneNumberAttached(message){
+     this.socialSharing.shareViaWhatsApp(message).then(() => {
       this.messageUtil.showSuccessfullMessage()
     }).catch(() => {
       this.messageUtil.showErrorMessage()
     });
+  }
+
+  shareDebtWhenThereIsPhoneNumber(message){
+
+    this.socialSharing.shareViaWhatsAppToReceiver(`+55${this.formatCostumerCellPhone()}`, message).then(() => {
+      this.messageUtil.showSuccessfullMessage()
+    }).catch(() => {
+      this.messageUtil.showErrorMessage()
+    });
+  }
+
+  formatCostumerCellPhone(){
+    var cellphone = this.record.costumer.cellphone;
+
+    cellphone = cellphone.replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
+
+    return cellphone;
+
   }
 
 }

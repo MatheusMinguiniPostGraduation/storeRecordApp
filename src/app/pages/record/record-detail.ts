@@ -79,6 +79,7 @@ export class RecordDetailComponent {
 
         //Updating the Costumer name
         this.costumerName = `${this.recordForm.costumer.name} ${this.recordForm.costumer.lastName}`;
+        this.recordVO.costumer.cellphone = this.recordForm.costumer.cellphone;
       },
       error => {
         let message = ''

@@ -81,15 +81,23 @@
 
             <ion-list>
                 <ion-item>
+                    <ion-label floating>Nome: </ion-label>
                     <ion-input placeholder="Nome" type="text" [(ngModel)]="recordForm.costumer.name"></ion-input>
                 </ion-item>
                 
                 <ion-item>
+                    <ion-label floating>Sobrenome: </ion-label>
                     <ion-input placeholder="Sobrenome" type="text" [(ngModel)]="recordForm.costumer.lastName" ></ion-input>
                 </ion-item>
 
                 <ion-item>
+                    <ion-label floating>CPF: </ion-label>
                     <ion-input placeholder="CPF" type="text" [brmasker]="{person: true}" [(ngModel)]="recordForm.costumer.cpf"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label floating>Celular: </ion-label>
+                    <ion-input type="text" [brmasker]="{phone: true}" [(ngModel)]="recordForm.costumer.cellphone"></ion-input>
                 </ion-item>
         
                 <ion-item>
