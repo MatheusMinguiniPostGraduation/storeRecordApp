@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, App, AlertController } from 'ionic-angular';
 import { RecordSearchComponent } from '../record/record-search';
+import { ReportComponent } from '../report/report.component';
 import { HomeService } from '../../services/home.service';
 import { RecordVO } from '../../vo/RecordVO';
 import { LoginComponent } from './login/login.component';
@@ -32,6 +33,11 @@ export class HomeComponent {
 
   openSearchRecordScreen(){
     this.navCtrl.push(RecordSearchComponent);
+  }
+
+  
+  openReportScreen(){
+    this.navCtrl.push(ReportComponent);
   }
 
   logout(){

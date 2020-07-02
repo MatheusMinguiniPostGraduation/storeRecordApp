@@ -27,6 +27,8 @@ import { SaleModule } from './pages/sale/sale.module';
 import { PaymentModule } from './pages/payment/payment.module';
 import { CreditModule } from './pages/credit/credit.module';
 import { ValidationUtil } from './util/validation.util';
+import { ReportModule } from './pages/report/report.module';
+import { MenuComponent } from './pages/menu/menu.component';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -40,6 +42,7 @@ registerLocaleData(ptBr)
     SaleModule,
     PaymentModule,
     CreditModule,
+    ReportModule,
     
     IonicModule.forRoot(MyApp)
   ],

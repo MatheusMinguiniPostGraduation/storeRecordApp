@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Relatórios
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+    
+<ion-content padding>
+
+    <ion-card style='
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+        border-bottom: 2px solid black'>
+        <ion-card-content>
+            <ion-card-header>
+                Pagamentos na loja (%)
+            </ion-card-header>
+
+            <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card color="default-blue">
+        <ion-card-content> 
+          <ion-list>
+              <ion-row>
+                  <ion-item>
+                      <ion-title size="small">Avisos</ion-title>
+                  </ion-item>
+        
+                  <ion-item>
+                    <ion-icon name="people" item-start></ion-icon>
+                      Total de clientes
+                    <ion-badge color="secondary" item-end>{{costumers.length}}</ion-badge>
+                  </ion-item>
+        
+              </ion-row>
+          </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card style='
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+        border-bottom: 2px solid black'>
+        <ion-card-content>
+            <ion-card-header>
+                Vendas vs Pagamentos
+            </ion-card-header>
+
+            <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
