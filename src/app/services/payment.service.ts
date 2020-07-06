@@ -54,15 +54,4 @@ export class PaymentService {
             })
         )
     };
-
-    getPaymentbyGroups(uri : string) : Observable<any> {
-        const fullUri = `${this.restUtil.getDNS()}/${uri}`
-        
-        return this.http.get<any>(fullUri, httpOptions)
-        .pipe(
-            catchError(error => {
-                throw new Error(error);
-            })
-        )
-    };
 }

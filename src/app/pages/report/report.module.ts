@@ -5,6 +5,7 @@ import { IonicModule } from 'ionic-angular';
 import { ReportComponent } from './report.component';
 import { ChartsModule } from 'ng2-charts';
 import { CostumerService } from '../../services/costumer.service';
+import { ReportService } from '../../services/report.service';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { CostumerService } from '../../services/costumer.service';
         ReportComponent
     ],
     providers : [
-        CostumerService
+        CostumerService,
+        ReportService
     ]
 })
 export class ReportModule{}
