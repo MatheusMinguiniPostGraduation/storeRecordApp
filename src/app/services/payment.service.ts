@@ -44,6 +44,17 @@ export class PaymentService {
         )
     };
 
+    getPaymentMethods() : Observable<any> {
+        const fullUri = `${this.restUtil.getDNS()}/payments/methods`
+        
+        return this.http.get<any>(fullUri, httpOptions)
+        .pipe(
+            catchError(error => {
+                throw new Error(error);
+            })
+        )
+    };
+
     getPaymentbyGroups(uri : string) : Observable<any> {
         const fullUri = `${this.restUtil.getDNS()}/${uri}`
         

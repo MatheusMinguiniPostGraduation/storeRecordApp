@@ -34,23 +34,13 @@
     </ion-title>
     <br>
 
-    <ion-list radio-group [(ngModel)]="payment.paymentMethod">
+    <ion-list radio-group [(ngModel)]="payment.paymentMethod.id" *ngFor="let method of paymentMethods; let i = index">
         <ion-item>
-          <ion-label>Dinheiro</ion-label>
-          <ion-radio value="Dinheiro" checked></ion-radio>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Cartão de débito</ion-label>
-          <ion-radio value="Cartão de débito"></ion-radio>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Cartão de crédito</ion-label>
-          <ion-radio value="Cartão de crédito"></ion-radio>
+            <ion-label>{{method.description}}</ion-label>
+            <ion-radio checked="{{i == 0}}" value="{{method.id}}"></ion-radio>
         </ion-item>
     </ion-list>
-   
+ 
     <button [disabled]="!informedValue || informedValue == 0"
      ion-button color="secondary" (click)="save()" full>
         Finalizar

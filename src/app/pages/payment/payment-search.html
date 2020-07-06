@@ -95,7 +95,7 @@
                             <p><b>Data:</b> {{payment.date}}</p>
                             <p><b>Recebido por:</b> {{payment.userName}}</p>
                             <ion-badge color="primary" item-end> {{payment.value | currency:'BRL':true}} </ion-badge>
-                            <p><b>Método:</b> {{payment.paymentMethod}} </p>
+                            <p><b>Método:</b> {{payment.paymentMethod.description}} </p>
                         </ion-item>
                             
                         <ion-item-options>

@@ -5,6 +5,7 @@ import { MessagesUtil } from "../../util/message.util";
 import { PaymentService } from "../../services/payment.service";
 import { PaymentForm } from "../../form/PaymentForm";
 import * as moment from 'moment'; 
+import { PaymentMethodVO } from "../../vo/PaymentMethodVO";
 
 
 @Component({
@@ -15,6 +16,7 @@ export class PaymentFormComponent {
 
     record : RecordVO;
     payment : PaymentForm;
+    paymentMethods : Array<PaymentMethodVO>;
 
     //View inputs
     informedValue : string;
@@ -28,6 +30,8 @@ export class PaymentFormComponent {
     ngOnInit(){
       this.record = this.navigationParameters.get('record');
       this.payment = new PaymentForm(this.record);
+      this.paymentMethods = [];
+      this.getPaymentMethods();
     }
 
     save(){
@@ -36,6 +40,18 @@ export class PaymentFormComponent {
       }catch(message){
         this.messageUtil.showErrorMessage(message);
       }
+    }
+
+    getPaymentMethods(){
+      this.service.getPaymentMethods().subscribe(
+        response => {
+          console.log(response);
+          this.paymentMethods = response;
+        },
+        error => {
+          this.messageUtil.showErrorMessage('Não foi possível obter a lista de meios de pagamento disponíveis');
+        }
+      )
     }
 
     sendPaymentData(){

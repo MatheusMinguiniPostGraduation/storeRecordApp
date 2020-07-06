@@ -1,4 +1,5 @@
 import { RecordVO } from "./RecordVO";
+import { PaymentMethodVO } from "./PaymentMethodVO";
 
 export class PaymentVO {
 
@@ -10,6 +11,7 @@ export class PaymentVO {
     value : number;
     total : number;
     cancelled : boolean;
+    paymentMethod : PaymentMethodVO
   
     constructor(record: RecordVO){
         this.record = record
